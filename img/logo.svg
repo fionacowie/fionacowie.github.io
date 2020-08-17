@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="62" height="62" viewBox="0 0 62 62">
+  <defs>
+    <clipPath id="clip-logo">
+      <rect width="62" height="62"/>
+    </clipPath>
+  </defs>
+  <g id="logo" clip-path="url(#clip-logo)">
+    <circle id="Ellipse_409" data-name="Ellipse 409" cx="25" cy="25" r="25" transform="translate(6 6)" fill="#cef7e9"/>
+    <text id="FC" transform="translate(16 40)" font-size="24" font-family="Raleway"><tspan x="0" y="0">FC</tspan></text>
+  </g>
+</svg>
