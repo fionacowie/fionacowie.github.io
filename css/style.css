@@ -101,11 +101,13 @@ a:active {
   border-right: 2px solid #005080;
   border-left: 2px solid #005080;
 }
+
 .button.contact:hover,
- .button.contact:focus {
+.button.contact:focus {
   background-color: #005080;
   color: white;
 }
+
 .button.contact:active {
   background-color: #00263D;
 }
