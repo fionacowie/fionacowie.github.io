@@ -5,6 +5,7 @@ mid navy blue: #005080
 dark navy blue: #003D62
 off white (for background): #FDFDFD
 primary text colour: #4C4C4C
+link hover: FF00A0
 
 colours not used yet:
 light blue: #C4F0FC
@@ -52,7 +53,7 @@ img {
 a {
   color: #0069A9;
   font-weight: 400;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:visited {
@@ -61,7 +62,7 @@ a:visited {
 
 a:hover,
 a:focus {
-  text-decoration: underline;
+  color: #FF00A0
 }
 
 a:active {
