@@ -1,23 +1,16 @@
 /*
 colours used:
-light navy blue: #0069A9
-mid navy blue: #005080
-dark navy blue: #003D62
-off white (for background): #FDFDFD
-primary text colour: #4C4C4C
-link hover: FF00A0
-
-colours not used yet:
-light blue: #C4F0FC
-mint green: #CEF7E9
-light grey: #F9FAFA
-
+primary - navy blue 100% #005080; 75% #407CA0; 50% #80A8BF; 25% #BFD3DF; active (dark) #00446D;
+secondary - magenta #F85399;
+header background - very light navy blue #F4F7F8;
+background - #FDFDFD;
+text - #4C4C4C;
 */
-
 /* site-wide general styling */
-
-* { /* this is the universal selector */
-  box-sizing: border-box; /* this makes responsive design more simple - it sets the default width of an element to include the padding and the border */
+* {
+  /* this is the universal selector */
+  box-sizing: border-box;
+  /* this makes responsive design more simple - it sets the default width of an element to include the padding and the border */
 }
 
 body {
@@ -35,6 +28,7 @@ h1, h2, h3 {
 }
 
 h1 {
+  color: #005080;
   font-size: 2.125em;
   font-weight: 300;
 }
@@ -63,30 +57,30 @@ figcaption {
 }
 
 a {
-  color: #0069A9;
+  color: #407CA0;
   font-weight: 400;
   text-decoration: underline;
 }
 
 a:visited {
-  color: #0069A9;
+  color: #407CA0;
 }
 
 a:hover,
 a:focus {
-  color: #FF00A0;
+  color: #F85399;
 }
 
 a:active {
-  color: #003D62;
+  color: #00446D;
 }
 
 .logo {
   max-width: 75px;
+  padding: 10px;
 }
 
 /* button styling */
-
 .button {
   display: inline-block;
   background-color: #005080;
@@ -94,7 +88,7 @@ a:active {
   font-weight: 400;
   padding: 10px;
   border-radius: 3px;
-  border-bottom: 2px solid #4C4C4C;
+  border-bottom: 2px solid #BFD3DF;
   transition: 0.2s opacity;
   text-decoration: none;
 }
@@ -123,7 +117,7 @@ a:active {
 
 .button.contact:hover,
 .button.contact:focus {
-  background-color: #005080;
+  background-color: rgba(0, 80, 128, 100);
   color: white;
 }
 
@@ -132,53 +126,54 @@ a:active {
 }
 
 /* social media styling */
-
 .fab {
   font-size: 1.5em;
 }
 
-
 /* section styling */
-
 header {
-  background-color: #C4F0FC;
+  background-color: #F4F7F8;
   text-align: center;
   padding: 10px 0;
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.16);
-  position:fixed;
+  position: fixed;
   width: 100%;
 }
 
 main {
-padding-top: 159px
+  padding-top: 159px
 }
 
 #home-hero {
-  background-color: #C4F0FC;
+  background-color: #F4F7F8;
   text-align: center;
   padding: 20px 0;
   display: inline-block;
   width: 100%;
 }
 
+iframe {
+  width: 240px;
+  height: 426px;
+  margin: 50px;
+}
 
 /* header navigation */
-
 nav {
   display: inline-block;
   width: 100%;
 }
 
-nav > ul {
+nav>ul {
   list-style-type: none;
   padding: 0;
 }
 
-nav > ul > li {
+nav>ul>li {
   display: inline-block;
 }
 
-nav > ul > li > a {
+nav>ul>li>a {
   margin: 0 15px;
   text-transform: uppercase;
   text-decoration: none;
@@ -186,45 +181,45 @@ nav > ul > li > a {
   color: #005080;
 }
 
-nav > ul > li > a:visited {
-color: #005080;
+nav>ul>li>a:visited {
+  color: #005080;
 }
 
-nav > ul > li > a:hover,
-nav > ul > li > a:focus {
-color: #0069A9;
-  border-bottom: 3px solid #0069A9;
+nav>ul>li>a:hover,
+nav>ul>li>a:focus {
+  color: #005080;
+  border-bottom: 3px solid #BFD3DF;
 }
 
-nav > ul > li > a:active {
-  color: #003D62;
-  border-bottom: 3px solid #0069A9;
+nav>ul>li>a:active {
+  color: #80A8BF;
 }
 
 /* footer navigation */
-
 .social-links {
   list-style-type: none;
   padding: 0px;
-  text-align:center;
+  text-align: center;
 }
 
-.social-links > li {
+.social-links>li {
   display: inline-block;
   padding: 10px;
 }
 
 /* layout styling */
-
-.container { /* wrapper to hold layout together, max size and centred on page. class applied to div after first tag in each section */
-  padding: 0 15px; /* left and right padding ensures none of the content inside is flush against edges of screen  */
+.container {
+  /* wrapper to hold layout together, max size and centred on page. class applied to div after first tag in each section */
+  padding: 0 15px;
+  /* left and right padding ensures none of the content inside is flush against edges of screen  */
 }
 
 .row {
-  margin: 25px 0; /* 25px top and bottom, 0 left and right */
+  margin: 25px 0;
+  /* 25px top and bottom, 0 left and right */
 }
 
 #home-content .row {
   padding-bottom: 25px;
-  border-bottom: 1px solid #0069A9;
+  border-bottom: 1px solid #80A8BF;
 }
