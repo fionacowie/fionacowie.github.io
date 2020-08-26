@@ -6,6 +6,7 @@ header background - very light navy blue #F4F7F8;
 background - #FDFDFD;
 text - #4C4C4C;
 */
+
 /* site-wide general styling */
 * {
   /* this is the universal selector */
@@ -80,6 +81,11 @@ a:active {
   padding: 10px;
 }
 
+#copyright {
+  font-size: 14px;
+  text-align: center;
+}
+
 /* button styling */
 .button {
   display: inline-block;
@@ -113,6 +119,7 @@ a:active {
   border-top: 2px solid #005080;
   border-right: 2px solid #005080;
   border-left: 2px solid #005080;
+  text-align: center;
 }
 
 .button.contact:hover,
@@ -128,6 +135,13 @@ a:active {
 /* social media styling */
 .fab {
   font-size: 1.5em;
+}
+
+/* iframe styling */
+iframe {
+  width: 300px;
+  height: 533px;
+  border: none;
 }
 
 /* section styling */
@@ -150,12 +164,6 @@ main {
   padding: 20px 0;
   display: inline-block;
   width: 100%;
-}
-
-iframe {
-  width: 240px;
-  height: 426px;
-  margin: 50px;
 }
 
 /* header navigation */
@@ -219,7 +227,23 @@ nav>ul>li>a:active {
   /* 25px top and bottom, 0 left and right */
 }
 
+.center {
+  text-align: center;
+}
+
+.center-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
 #home-content .row {
   padding-bottom: 25px;
   border-bottom: 1px solid #80A8BF;
+}
+
+/* specific image styling */
+#alba-flying {
+  padding-top: 20px;
 }
