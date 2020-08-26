@@ -13,6 +13,13 @@ mint green: #CEF7E9
 light grey: #F9FAFA
 
 */
+
+/* site-wide general styling */
+
+* { /* this is the universal selector */
+  box-sizing: border-box; /* this makes responsive design more simple - it sets the default width of an element to include the padding and the border */
+}
+
 body {
   background-color: #FDFDFD;
   font-family: 'Raleway', sans-serif;
@@ -46,8 +53,13 @@ img {
   width: 100%;
 }
 
-.logo {
-  width: 75px;
+figure {
+  margin: 0;
+}
+
+figcaption {
+  font-size: 12px;
+  text-align: center;
 }
 
 a {
@@ -62,12 +74,18 @@ a:visited {
 
 a:hover,
 a:focus {
-  color: #FF00A0
+  color: #FF00A0;
 }
 
 a:active {
   color: #003D62;
 }
+
+.logo {
+  max-width: 75px;
+}
+
+/* button styling */
 
 .button {
   display: inline-block;
@@ -78,6 +96,7 @@ a:active {
   border-radius: 3px;
   border-bottom: 2px solid #4C4C4C;
   transition: 0.2s opacity;
+  text-decoration: none;
 }
 
 .button:visited {
@@ -87,7 +106,6 @@ a:active {
 .button:hover,
 .button:focus {
   opacity: 0.8;
-  text-decoration: none;
 }
 
 .button:active {
@@ -111,4 +129,102 @@ a:active {
 
 .button.contact:active {
   background-color: #00263D;
+}
+
+/* social media styling */
+
+.fab {
+  font-size: 1.5em;
+}
+
+
+/* section styling */
+
+header {
+  background-color: #C4F0FC;
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.16);
+  position:fixed;
+  width: 100%;
+}
+
+main {
+padding-top: 159px
+}
+
+#home-hero {
+  background-color: #C4F0FC;
+  text-align: center;
+  padding: 20px 0;
+  display: inline-block;
+  width: 100%;
+}
+
+
+/* header navigation */
+
+nav {
+  display: inline-block;
+  width: 100%;
+}
+
+nav > ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav > ul > li {
+  display: inline-block;
+}
+
+nav > ul > li > a {
+  margin: 0 15px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 600;
+  color: #005080;
+}
+
+nav > ul > li > a:visited {
+color: #005080;
+}
+
+nav > ul > li > a:hover,
+nav > ul > li > a:focus {
+color: #0069A9;
+  border-bottom: 3px solid #0069A9;
+}
+
+nav > ul > li > a:active {
+  color: #003D62;
+  border-bottom: 3px solid #0069A9;
+}
+
+/* footer navigation */
+
+.social-links {
+  list-style-type: none;
+  padding: 0px;
+  text-align:center;
+}
+
+.social-links > li {
+  display: inline-block;
+  padding: 10px;
+}
+
+/* layout styling */
+
+.container { /* wrapper to hold layout together, max size and centred on page. class applied to div after first tag in each section */
+  padding: 0 15px; /* left and right padding ensures none of the content inside is flush against edges of screen  */
+}
+
+.row {
+  margin: 25px 0; /* 25px top and bottom, 0 left and right */
+}
+
+#home-content .row {
+  padding-bottom: 25px;
+  border-bottom: 1px solid #0069A9;
 }
