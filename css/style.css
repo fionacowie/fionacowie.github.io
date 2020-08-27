@@ -301,8 +301,20 @@ nav>ul>li>a:active {
   margin-top: 0;
 }
 
+#home-content h2 {
+  padding-left: 10px;
+}
+
 #about-content h3 {
 margin-top: 0;
+}
+
+#about-hero {
+  padding-top: 15px;
+}
+
+#project-hero {
+  padding-top: 15px;
 }
 
 }
@@ -310,6 +322,13 @@ margin-top: 0;
 /* large devices (1024px and larger)*/
 @media only screen and (min-width: 1024px) {
 
+body {
+  font-size: 20px;
+}
+  .col-md-6 {
+    width: unset;
+    padding-top: 0;
+  }
 
 .col-lg-7 {
   width: 58.33%;
@@ -317,11 +336,6 @@ margin-top: 0;
 
 .col-lg-5 {
   width: 41.66%;
-}
-
-.col-md-6 {
-  width: unset;
-  padding: 0;
 }
 
 .row::after {
@@ -335,10 +349,15 @@ display: table;
   margin-left: auto;
   margin-right: auto;
 }
-}
 
 #about-content h3 {
 margin-top: 0;
+}
+
+#home-content h2 {
+  padding-left: 10px;
+}
+
 }
 
 
