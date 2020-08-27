@@ -155,6 +155,20 @@ header {
   width: 100%;
 }
 
+footer {
+  background-color: #F4F7F8;
+  text-align: center;
+  padding: 10px 0;
+  position: relative;
+  width: 100%;
+  margin-top: 40px;
+}
+
+footer>div>p {
+  max-width: 650px;
+  margin: auto;
+}
+
 main {
   padding-top: 159px
 }
@@ -349,6 +363,7 @@ display: table;
   margin-left: auto;
   margin-right: auto;
 }
+
 
 #about-content h3 {
 margin-top: 0;
