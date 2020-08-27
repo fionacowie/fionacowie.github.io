@@ -8,10 +8,8 @@ text - #4C4C4C;
 */
 
 /* site-wide general styling */
-* {
-  /* this is the universal selector */
-  box-sizing: border-box;
-  /* this makes responsive design more simple - it sets the default width of an element to include the padding and the border */
+* { /* this is the universal selector */
+  box-sizing: border-box; /* this makes responsive design more simple - it sets the default width of an element to include the padding and the border */
 }
 
 body {
@@ -57,6 +55,8 @@ figcaption {
   text-align: center;
 }
 
+/* link styling */
+
 a {
   color: #407CA0;
   font-weight: 400;
@@ -74,16 +74,6 @@ a:focus {
 
 a:active {
   color: #00446D;
-}
-
-.logo {
-  max-width: 75px;
-  padding: 10px;
-}
-
-#copyright {
-  font-size: 14px;
-  text-align: center;
 }
 
 /* button styling */
@@ -132,6 +122,17 @@ a:active {
   background-color: #00263D;
 }
 
+/* header/footer element styling */
+.logo {
+  max-width: 75px;
+  padding: 10px;
+}
+
+#copyright {
+  font-size: 14px;
+  text-align: center;
+}
+
 /* social media styling */
 .fab {
   font-size: 1.5em;
@@ -164,6 +165,11 @@ main {
   padding: 20px 0;
   display: inline-block;
   width: 100%;
+}
+
+#home-hero span {
+  display: block;
+
 }
 
 /* header navigation */
@@ -246,4 +252,96 @@ nav>ul>li>a:active {
 /* specific image styling */
 #alba-flying {
   padding-top: 20px;
+}
+
+/* media queries */
+
+/* medium devices (640px and larger)*/
+@media only screen and (min-width: 640px) {
+
+  header {
+    text-align: unset;
+    padding: 20px 0 13px;
+  }
+
+  nav {
+    width: auto;
+    float: right;
+    margin-top: 14px;
+  }
+
+  main {
+    padding-top: 99px;
+  }
+
+  body {
+    font-size: 18px;
+  }
+
+  .col-md-6 {
+    width: 50%;
+  }
+
+  .row-md {
+    width: 100%;
+  }
+
+  [class*="col-"] {
+    float: left;
+    padding: 10px;
+  }
+
+  .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+#home-content h3 {
+  margin-top: 0;
+}
+
+#about-content h3 {
+margin-top: 0;
+}
+
+}
+
+/* large devices (1024px and larger)*/
+@media only screen and (min-width: 1024px) {
+
+
+.col-lg-7 {
+  width: 58.33%;
+}
+
+.col-lg-5 {
+  width: 41.66%;
+}
+
+.col-md-6 {
+  width: unset;
+  padding: 0;
+}
+
+.row::after {
+content: "";
+clear: both;
+display: table;
+}
+
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+}
+
+#about-content h3 {
+margin-top: 0;
+}
+
+
+/* x-large devices (1140px and larger)*/
+@media only screen and (min-width: 1140px) {
 }
