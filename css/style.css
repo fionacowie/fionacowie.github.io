@@ -187,6 +187,10 @@ main {
 
 }
 
+#home-content span {
+  display: block;
+}
+
 /* header navigation */
 nav {
   display: inline-block;
@@ -267,6 +271,12 @@ nav>ul>li>a:active {
 /* specific image styling */
 #alba-flying {
   padding-top: 20px;
+}
+
+svg {
+  width: 100%;
+max-width: 100%;
+height: auto;
 }
 
 /* media queries */
@@ -379,4 +389,35 @@ margin-top: 0;
 
 /* x-large devices (1140px and larger)*/
 @media only screen and (min-width: 1140px) {
+}
+
+/* animations */
+
+@keyframes color-change {
+  from {fill: #F8A553;}
+  to {fill: yellow;}
+  from {transform: translate(0,50px);}
+  to {transform: translate(200px,50px);}
+}
+
+.sun {
+animation-duration: 4s;
+animation-name: color-change;
+ animation-iteration-count: infinite;
+ animation-direction: normal;
+ animation-timing-function: linear;
+}
+
+
+@keyframes cloud-move {
+  from {transform: translate(0,50px);}
+  to {transform: translate(200px,50px);}
+}
+
+.cloud-front {
+  animation-duration: 30s;
+  animation-name: cloud-move;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
 }
