@@ -61,6 +61,7 @@ a {
   color: #407CA0;
   font-weight: 400;
   text-decoration: underline;
+  transition: 0.2s opacity;
 }
 
 a:visited {
@@ -85,8 +86,8 @@ a:active {
   padding: 10px;
   border-radius: 3px;
   border-bottom: 2px solid #BFD3DF;
-  transition: 0.2s opacity;
   text-decoration: none;
+  transition: 0.2s opacity;
 }
 
 .button:visited {
