@@ -451,3 +451,17 @@ svg {
 .sky {
   animation: 10s sky-change infinite alternate linear;
 }
+
+
+@keyframes foreground-change {
+from {
+  fill: #80A0BF;
+}
+to {
+  fill: #4D7AA7;
+}
+
+}
+.scene {
+  animation: 10s foreground-change infinite alternate linear;
+}
