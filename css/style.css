@@ -125,8 +125,7 @@ a:active {
 
 /* header/footer element styling */
 .logo {
-  max-width: 75px;
-  padding: 10px;
+  max-width: 40px;
 }
 
 #copyright {
@@ -149,8 +148,7 @@ iframe {
 /* section styling */
 header {
   background-color: #F4F7F8;
-  text-align: center;
-  padding: 10px 0;
+  padding: 10px 0 3px;
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.16);
   position: fixed;
   width: 100%;
@@ -171,7 +169,7 @@ footer>div>p {
 }
 
 main {
-  padding-top: 159px
+  padding-top: 60px;
 }
 
 #home-hero {
@@ -191,18 +189,14 @@ main {
 }
 
 /* header navigation */
-nav {
-  display: inline-block;
-  width: 100%;
-}
 
 nav>ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 nav>ul>li {
-  display: inline-block;
 }
 
 nav>ul>li>a {
@@ -227,6 +221,36 @@ nav>ul>li>a:active {
   color: #80A8BF;
 }
 
+.navtoggle li:not(:last-child) {
+  display: none;
+}
+
+.navtoggle, .navtoggle.responsive {
+  position: relative;
+}
+
+.navtoggle li .icon {
+  position: absolute;
+  right: 0;
+  top: 2px;
+  font-size: 20px;
+  padding-right: 0;
+  border-bottom: none;
+}
+
+.navtoggle.responsive nav {
+  padding: 24px 0 0;
+}
+.navtoggle.responsive li {
+  display: block;
+  padding: 10px 0;
+  border-top: 1px solid #BFD3DF;
+}
+
+.navtoggle.responsive li:last-child  {
+  padding: 0 0 70px;
+}
+
 /* footer navigation */
 .social-links {
   list-style-type: none;
@@ -237,6 +261,10 @@ nav>ul>li>a:active {
 .social-links>li {
   display: inline-block;
   padding: 10px;
+}
+
+a.icon {
+  margin-right: 0;
 }
 
 /* layout styling */
@@ -290,7 +318,25 @@ svg {
     width: auto;
     float: right;
     margin-top: 14px;
+    display: inline-block;
   }
+
+  nav > ul {
+    margin: 1em 0;
+  }
+
+  nav>ul>li {
+    display: inline-block;
+  }
+
+.navtoggle li:not(:last-child) {
+  display: inline-block;
+  border-top: none;
+}
+
+.navtoggle li:last-child {
+  display: none;
+}
 
   main {
     padding-top: 99px;
