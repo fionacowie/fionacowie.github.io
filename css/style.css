@@ -1,3 +1,5 @@
+main
+
 /*
 colours used:
 primary - navy blue 100% #005080; 75% #407CA0; 50% #80A8BF; 25% #BFD3DF; active (dark) #00446D;
@@ -6,13 +8,16 @@ header background - very light navy blue #F4F7F8;
 background - #FDFDFD;
 text - #4C4C4C;
 */
-/* site-wide general styling */
+
+/* ------------------------ BASE CODE ------------------------ */
+/* ---SITE WIDE GENERAL STYLING--- */
 * {
   /* this is the universal selector */
   box-sizing: border-box;
   /* this makes responsive design more simple - it sets the default width of an element to include the padding and the border */
 }
 
+/* body */
 body {
   background-color: #FDFDFD;
   font-family: 'Raleway', sans-serif;
@@ -22,6 +27,7 @@ body {
   color: #4C4C4C;
 }
 
+/* headings */
 h1, h2, h3 {
   line-height: 1.4;
   color: #4C4C4C;
@@ -43,6 +49,7 @@ h3 {
   font-weight: 600;
 }
 
+/* images */
 img {
   width: 100%;
 }
@@ -56,11 +63,17 @@ figcaption {
   text-align: center;
 }
 
-/* link styling */
+/* iframes */
+iframe {
+  width: 100%;
+  height: 500px;
+  border: none;
+}
+
+/* links */
 a {
   color: #407CA0;
   font-weight: 400;
-  text-decoration: underline;
   transition: 0.2s opacity;
 }
 
@@ -77,7 +90,7 @@ a:active {
   color: #00446D;
 }
 
-/* button styling */
+/* primary buttons */
 .button {
   display: inline-block;
   background-color: #005080;
@@ -103,6 +116,7 @@ a:active {
   background-color: #00263D;
 }
 
+/* seconary buttons */
 .button.contact {
   background-color: transparent;
   color: #005080;
@@ -123,29 +137,24 @@ a:active {
   background-color: #00263D;
 }
 
-/* header/footer element styling */
+/* logo */
 .logo {
   max-width: 40px;
 }
 
+/* social media icons */
+.fab {
+  font-size: 1.5em;
+}
+
+/* copyright */
 #copyright {
   font-size: 14px;
   text-align: center;
 }
 
-/* social media styling */
-.fab {
-  font-size: 1.5em;
-}
-
-/* iframe styling */
-iframe {
-  width: 100%;
-  height: 500px;
-  border: none;
-}
-
-/* section styling */
+/* ---SECTION STYLING--- */
+/* HEADER */
 header {
   background-color: #F4F7F8;
   padding: 10px 0 3px;
@@ -154,6 +163,12 @@ header {
   width: 100%;
 }
 
+/* MAIN */
+main {
+  padding-top: 60px;
+}
+
+/* FOOTER */
 footer {
   background-color: #F4F7F8;
   text-align: center;
@@ -168,28 +183,8 @@ footer>div>p {
   margin: auto;
 }
 
-main {
-  padding-top: 60px;
-}
-
-#home-hero {
-  background-color: #F4F7F8;
-  text-align: center;
-  padding: 20px 0;
-  display: inline-block;
-  width: 100%;
-}
-
-#home-hero span {
-  display: block;
-}
-
-#home-content span {
-  display: block;
-}
-
-/* header navigation */
-
+/* ---NAVIGATION--- */
+/* HEADER NAVIGATION */
 nav>ul {
   list-style-type: none;
   padding: 0;
@@ -221,6 +216,11 @@ nav>ul>li>a:active {
   color: #80A8BF;
 }
 
+nav>ul>li>a.active {
+  border-bottom: 3px solid #BFD3DF;
+}
+
+/* HAMBURGER MENU */
 .navtoggle li:not(:last-child) {
   display: none;
 }
@@ -251,7 +251,16 @@ nav>ul>li>a:active {
   padding: 0 0 70px;
 }
 
-/* footer navigation */
+#contact-active {
+  border-bottom: none;
+}
+
+#menu-icon {
+  margin-right: 0;
+}
+
+/* FOOTER NAVIGATION */
+/* links to social media */
 .social-links {
   list-style-type: none;
   padding: 0px;
@@ -263,11 +272,8 @@ nav>ul>li>a:active {
   padding: 10px;
 }
 
-a.icon {
-  margin-right: 0;
-}
-
-/* layout styling */
+/* --- LAYOUT STYLING --- */
+/* SITE WIDE LAYOUT STYLING*/
 .container {
   /* wrapper to hold layout together, max size and centred on page. class applied to div after first tag in each section */
   padding: 0 15px;
@@ -290,144 +296,46 @@ a.icon {
   height: 100px;
 }
 
+/* HOME PAGE LAYOUT STYLING*/
 #home-content .row {
   padding-bottom: 25px;
   border-bottom: 1px solid #80A8BF;
 }
 
-/* specific image styling */
-#alba-flying {
-  padding-top: 20px;
+#home-content .row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
+#home-hero {
+  background-color: #F4F7F8;
+  text-align: center;
+  padding: 15px 0;
+  display: inline-block;
+  width: 100%;
+}
+
+#home-hero span {
+  display: block;
+  font-weight: 400;
+}
+
+/* svg animation*/
 svg {
   width: 100%;
   max-width: 100%;
   height: auto;
 }
 
-/* media queries */
-/* medium devices (640px and larger)*/
-@media only screen and (min-width: 640px) {
-  header {
-    text-align: unset;
-    padding: 20px 0 13px;
-  }
+/* ABOUT PAGE LAYOUT STYLING */
 
-  nav {
-    width: auto;
-    float: right;
-    margin-top: 14px;
-    display: inline-block;
-  }
-
-  nav > ul {
-    margin: 1em 0;
-  }
-
-  nav>ul>li {
-    display: inline-block;
-  }
-
-.navtoggle li:not(:last-child) {
-  display: inline-block;
-  border-top: none;
+/* WEE QUESTS PAGE LAYOUT STYLING */
+/* specific image styling */
+#alba-flying {
+  padding-top: 20px;
 }
 
-.navtoggle li:last-child {
-  display: none;
-}
-
-  main {
-    padding-top: 99px;
-  }
-
-  body {
-    font-size: 18px;
-  }
-
-  .col-md-6 {
-    width: 50%;
-  }
-
-  .row-md {
-    width: 100%;
-  }
-
-  [class*="col-"] {
-    float: left;
-    padding: 10px;
-  }
-
-  .row::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-
-  #home-content h3 {
-    margin-top: 0;
-  }
-
-  #home-content h2 {
-    padding-left: 10px;
-  }
-
-  #about-content h3 {
-    margin-top: 0;
-  }
-
-  #about-hero {
-    padding-top: 15px;
-  }
-
-  #project-hero {
-    padding-top: 15px;
-  }
-}
-
-/* large devices (1024px and larger)*/
-@media only screen and (min-width: 1024px) {
-  body {
-    font-size: 20px;
-  }
-
-  .col-md-6 {
-    width: unset;
-    padding-top: 0;
-  }
-
-  .col-lg-7 {
-    width: 58.33%;
-  }
-
-  .col-lg-5 {
-    width: 41.66%;
-  }
-
-  .row::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-
-  .container {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  #about-content h3 {
-    margin-top: 0;
-  }
-
-  #home-content h2 {
-    padding-left: 10px;
-  }
-}
-
-/* x-large devices (1140px and larger)*/
-@media only screen and (min-width: 1140px) {}
+/* --- KEYFRAMES --- */
 
 /* animations */
 @keyframes color-change {
@@ -510,4 +418,215 @@ to {
 }
 .scene {
   animation: 10s foreground-change infinite alternate linear;
+}
+
+/* ------------------------ MEDIA QUERIES ------------------------ */
+/* ---MEDIUM DEVICES (640PX AND LARGER---) */
+@media only screen and (min-width: 640px) {
+/* ---MEDIUM GENERAL STYLING--- */
+/* M body */
+body {
+  font-size: 18px;
+}
+/* M headings */
+/* M images */
+/* M iframes */
+/* M links */
+/* M primary buttons */
+/* M seconary buttons */
+/* M logo */
+/* M social media icons */
+/* M copyright */
+
+/* --- MEDIUM SECTION STYLING--- */
+/* M HEADER */
+header {
+  text-align: unset;
+  padding: 20px 0 13px;
+}
+/* M MAIN */
+main {
+  padding-top: 99px;
+}
+/* M FOOTER */
+
+/* --- MEDIUM NAVIGATION--- */
+/* M HEADER NAVIGATION */
+nav {
+  width: auto;
+  float: right;
+  margin-top: 14px;
+  display: inline-block;
+}
+
+nav > ul {
+  margin: 1em 0;
+}
+
+nav>ul>li {
+  display: inline-block;
+}
+
+.navtoggle.responsive nav {
+  padding: 0;
+}
+
+.navtoggle.responsive li {
+  padding: 0;
+}
+
+.navtoggle li:not(:last-child) {
+display: inline-block;
+border-top: none;
+}
+
+.navtoggle li:last-child {
+display: none;
+}
+
+/* M FOOTER NAVIGATION */
+/* M links to social media */
+
+/* --- MEDIUM LAYOUT STYLING --- */
+/* M SITE WIDE LAYOUT STYLING*/
+.col-md-6 {
+  width: 50%;
+}
+
+.row-md {
+  width: 100%;
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 10px;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* M HOME PAGE LAYOUT STYLING*/
+#home-content h3 {
+  margin-top: 0;
+}
+
+#home-content h2 {
+  padding-left: 10px;
+}
+/* M ABOUT PAGE LAYOUT STYLING*/
+#about-content h3 {
+  margin-top: 0;
+}
+
+#about-hero {
+  padding-top: 15px;
+}
+/* M WEE QUESTS PAGE LAYOUT STYLING*/
+  #project-hero {
+    padding-top: 15px;
+  }
+  /* END OF MEDIUM MEDIA QUERY */
+}
+
+/* ---LARGE DEVICES (1024PX AND LARGER---) */
+@media only screen and (min-width: 1024px) {
+/* --- LARGE GENERAL STYLING--- */
+/* L body */
+body {
+  font-size: 20px;
+}
+/* L headings */
+/* L images */
+/* L iframes */
+/* L links */
+/* L primary buttons */
+/* L seconary buttons */
+/* L logo */
+/* L social media icons */
+/* L copyright */
+
+/* ---  LARGE SECTION STYLING--- */
+/* L HEADER */
+/* L MAIN */
+/* L FOOTER */
+
+/* ---  LARGE NAVIGATION--- */
+/* L HEADER NAVIGATION */
+/* L FOOTER NAVIGATION */
+/* L links to social media */
+
+/* ---  LARGE LAYOUT STYLING --- */
+/* L SITE WIDE LAYOUT STYLING*/
+.col-md-6 {
+  width: unset;
+  padding-top: 0;
+}
+
+.col-lg-7 {
+  width: 58.33%;
+}
+
+.col-lg-5 {
+  width: 41.66%;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container {
+  max-width: 930px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* L HOME PAGE LAYOUT STYLING*/
+#home-content h2 {
+  padding-left: 10px;
+}
+
+/* L ABOUT PAGE LAYOUT STYLING*/
+#about-content h3 {
+  margin-top: 0;
+}
+/* L WEE QUESTS PAGE LAYOUT STYLING*/
+
+/* END OF LARGE MEDIA QUERY */
+}
+
+/* ---X LARGE DEVICES (1024PX AND LARGER---) */
+@media only screen and (min-width: 1140px) {
+/* --- X LARGE GENERAL STYLING--- */
+/* XL body */
+/* XL headings */
+/* XL images */
+/* XL iframes */
+/* XL links */
+/* XL primary buttons */
+/* XL seconary buttons */
+/* XL logo */
+/* XL social media icons */
+/* XL copyright */
+
+/* ---  X LARGE SECTION STYLING--- */
+/* XL HEADER */
+/* XL MAIN */
+/* XL FOOTER */
+
+/* ---  X LARGE NAVIGATION--- */
+/* XL HEADER NAVIGATION */
+/* XL FOOTER NAVIGATION */
+/* XL links to social media */
+
+/* --- X LARGE LAYOUT STYLING --- */
+/* XL SITE WIDE LAYOUT STYLING*/
+/* XL HOME PAGE LAYOUT STYLING*/
+/* XL ABOUT PAGE LAYOUT STYLING*/
+/* XL WEE QUESTS PAGE LAYOUT STYLING*/
+/* END OF X LARGE MEDIA QUERY */
 }
