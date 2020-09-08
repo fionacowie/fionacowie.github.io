@@ -115,6 +115,11 @@ a:active {
   background-color: #00263D;
 }
 
+#coming-soon {
+  background: none;
+  color: #407CA0;
+}
+
 /* seconary buttons */
 .button.contact {
   background-color: transparent;
@@ -334,12 +339,22 @@ svg {
 
 /* WEE QUESTS PAGE LAYOUT STYLING */
 
-#project-hero {
-  margin-bottom: 50px;
+#project-content h2 {
+  margin-top: 50px;
 }
+
+#project-content h3 {
+  margin-top: 50px;
+}
+
+#project-content span {
+  font-weight: 600;
+}
+
 /* specific image styling */
 #alba-flying {
-  padding-top: 20px;
+  padding-top: 50px;
+
 }
 
 /* --- KEYFRAMES --- */
@@ -442,6 +457,10 @@ body {
 /* M primary buttons */
 /* M seconary buttons */
 /* M logo */
+.logo {
+  max-width: 60px;
+  margin: 15px;
+}
 /* M social media icons */
 /* M copyright */
 
@@ -600,6 +619,10 @@ body {
 /* L ABOUT PAGE LAYOUT STYLING*/
 #about-content h3 {
   margin-top: 0;
+}
+
+#skills-tools-lg {
+  padding-left: 80px;
 }
 /* L WEE QUESTS PAGE LAYOUT STYLING*/
 
