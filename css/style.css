@@ -203,6 +203,7 @@ nav>ul>li>a {
   text-decoration: none;
   font-weight: 600;
   color: #005080;
+  padding-right: 600px;
 }
 
 nav>ul>li>a:visited {
@@ -212,15 +213,14 @@ nav>ul>li>a:visited {
 nav>ul>li>a:hover,
 nav>ul>li>a:focus {
   color: #005080;
-  border-bottom: 3px solid #BFD3DF;
 }
 
 nav>ul>li>a:active {
   color: #80A8BF;
 }
 
-nav>ul>li>a.active {
-  border-bottom: 3px solid #BFD3DF;
+nav ul li.active {
+  background: rgba(191, 211, 223, 0.7);
 }
 
 /* HAMBURGER MENU */
@@ -323,9 +323,21 @@ nav>ul>li>a.active {
   width: 100%;
 }
 
+#home-hero h1 {
+  margin-top: 0;
+}
+
+#avatar {
+  max-width: 500px;
+}
+
 #home-hero span {
   display: block;
   font-weight: 400;
+}
+
+#home-content span {
+  display: inline-block;
 }
 
 /* svg animation*/
@@ -335,9 +347,11 @@ svg {
   height: auto;
 }
 
+
 /* ABOUT PAGE LAYOUT STYLING */
 
 /* WEE QUESTS PAGE LAYOUT STYLING */
+
 
 #project-content h2 {
   margin-top: 50px;
@@ -349,6 +363,11 @@ svg {
 
 #project-content span {
   font-weight: 600;
+}
+
+#project-content figure {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 /* specific image styling */
@@ -493,6 +512,24 @@ nav>ul>li {
   display: inline-block;
 }
 
+nav ul li a {
+  padding-right: 0;
+}
+
+nav>ul>li>a:hover,
+nav>ul>li>a:focus {
+  color: #005080;
+  border-bottom: 3px solid #BFD3DF;
+}
+
+nav ul li.active a {
+  border-bottom: 3px solid #BFD3DF;
+}
+
+nav ul li.active {
+  background: none;
+}
+
 .navtoggle.responsive nav {
   padding: 0;
 }
@@ -535,6 +572,10 @@ display: none;
 }
 
 /* M HOME PAGE LAYOUT STYLING*/
+
+#avatar {
+  margin-top: 30px;
+}
 #home-content h3 {
   margin-top: 0;
 }
@@ -553,7 +594,7 @@ display: none;
 /* M WEE QUESTS PAGE LAYOUT STYLING*/
   #project-hero {
     padding-top: 15px;
-  }
+}
   /* END OF MEDIUM MEDIA QUERY */
 }
 

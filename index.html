@@ -10,6 +10,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fiona Cowie | UX/UI Designer | Edinburgh</title>
+  <link href="img/favicon@2x.png" rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+<link href="img/favicon@2x.png" rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
   <script src="https://kit.fontawesome.com/1c44433c74.js" crossorigin="anonymous"></script>
 </head>
 
@@ -23,7 +25,7 @@
       <a href="index.html"><img src="img/logo.svg" class="logo" alt="Fiona Cowie"></a>
       <nav>
         <ul>
-          <li><a href="index.html" class="active">Work</a></li>
+          <li class="active"><a href="index.html">Work</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="#contact" id="contact-active" onclick="menuToggle()">Contact</a></li>
           <li><a href="javascript:void(0);" class="icon" id="menu-icon" onclick="menuToggle()"><i class="fas fa-bars"></i></a></li>
@@ -38,6 +40,10 @@
     <!--Hero Section:-->
     <div class="center" id="home-hero">
       <div class="container">
+        <picture>
+          <source srcset="img/avatar.png" media="(max-width:767px)">
+          <img id="avatar" src="img/avatar@2x.png" alt="Avatar">
+        </picture>
         <h1>Hi, I'm Fiona! <span>I'm a UX designer and artist from Edinburgh.</span></h1>
         <p>
           I love to create memorable, engaging experiences for people.
@@ -74,8 +80,8 @@
           <!--Project 2 Image:-->
           <div class="column col-md-6 col-lg-7">
             <picture>
-              <source srcset="img/home/digital-art.png" media="(max-width:767px)">
-              <img src="img/home/digital-art@2x.png" alt="Camping Cat Illustration">
+              <source srcset="img/home/heron.png" media="(max-width:767px)">
+              <img src="img/home/heron@2x.png" alt="Camping Cat Illustration">
             </picture>
           </div>
           <!--Project 2 Text:-->
