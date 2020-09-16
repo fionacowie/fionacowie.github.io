@@ -476,7 +476,7 @@ body {
 /* M primary buttons */
 /* M seconary buttons */
 /* M logo */
-.logo {
+/*.logo {
   max-width: 60px;
   margin: 15px;
 }
@@ -487,11 +487,11 @@ body {
 /* M HEADER */
 header {
   text-align: unset;
-  padding: 20px 0 13px;
+  padding: 15px 0 8px;
 }
 /* M MAIN */
 main {
-  padding-top: 99px;
+  padding-top: 60px;
 }
 /* M FOOTER */
 
@@ -500,11 +500,11 @@ main {
 nav {
   width: auto;
   float: right;
-  margin-top: 14px;
+  margin-top: 8px;
   display: inline-block;
 }
 
-nav > ul {
+/nav > ul {
   margin: 1em 0;
 }
 
@@ -573,9 +573,9 @@ display: none;
 
 /* M HOME PAGE LAYOUT STYLING*/
 
-#avatar {
-  margin-top: 30px;
-}
+
+
+
 #home-content h3 {
   margin-top: 0;
 }
@@ -602,9 +602,6 @@ display: none;
 @media only screen and (min-width: 1024px) {
 /* --- LARGE GENERAL STYLING--- */
 /* L body */
-body {
-  font-size: 20px;
-}
 /* L headings */
 /* L images */
 /* L iframes */
