@@ -1,34 +1,39 @@
 /*
 colours used:
-primary - navy blue 100% #005080; 75% #407CA0; 50% #80A8BF; 25% #BFD3DF; active (dark) #00446D;
-secondary - magenta #F85399;
-header background - very light navy blue #F4F7F8;
-background - #FDFDFD;
-text - #4C4C4C;
+primary - navy blue 100% #005080; 75% #407ca0; 50% #80a8bf; 25% #bfd3df; active (dark) #00446d;
+secondary - magenta #f85399;
+header background - very light navy blue #f4f7f8;
+background - #fdfdfd;
+text - #4c4c4c;
 */
 
 /* ------------------------ BASE CODE ------------------------ */
+
 /* ---SITE WIDE GENERAL STYLING--- */
 * {
   /* this is the universal selector */
   box-sizing: border-box;
+
   /* this makes responsive design more simple - it sets the default width of an element to include the padding and the border */
 }
 
 /* body */
 body {
-  background-color: #FDFDFD;
+  background-color: #fdfdfd;
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
   font-weight: 300;
   line-height: 1.6;
-  color: #4C4C4C;
+  color: #4c4c4c;
 }
 
 /* headings */
-h1, h2, h3 {
+
+h1,
+h2,
+h3 {
   line-height: 1.4;
-  color: #4C4C4C;
+  color: #4c4c4c;
 }
 
 h1 {
@@ -70,22 +75,22 @@ iframe {
 
 /* links */
 a {
-  color: #407CA0;
+  color: #005080;
   font-weight: 400;
   transition: 0.2s opacity;
 }
 
 a:visited {
-  color: #407CA0;
+  color: #407ca0;
 }
 
 a:hover,
 a:focus {
-  color: #F85399;
+  color: #f85399;
 }
 
 a:active {
-  color: #00446D;
+  color: #00446d;
 }
 
 /* primary buttons */
@@ -96,7 +101,7 @@ a:active {
   font-weight: 400;
   padding: 10px;
   border-radius: 3px;
-  border-bottom: 2px solid #BFD3DF;
+  border-bottom: 2px solid #bfd3df;
   text-decoration: none;
   transition: 0.2s opacity;
 }
@@ -112,12 +117,12 @@ a:active {
 }
 
 .button:active {
-  background-color: #00263D;
+  background-color: #00263d;
 }
 
 #coming-soon {
   background: none;
-  color: #407CA0;
+  color: #407ca0;
 }
 
 /* seconary buttons */
@@ -133,12 +138,12 @@ a:active {
 
 .button.contact:hover,
 .button.contact:focus {
-  background-color: rgba(0, 80, 128, 100);
+  background-color: rgba(0, 80, 128);
   color: white;
 }
 
 .button.contact:active {
-  background-color: #00263D;
+  background-color: #00263d;
 }
 
 /* logo */
@@ -158,11 +163,12 @@ a:active {
 }
 
 /* ---SECTION STYLING--- */
+
 /* HEADER */
 header {
-  background-color: #F4F7F8;
+  background-color: #f4f7f8;
   padding: 10px 0 3px;
-  box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.16);
   position: fixed;
   width: 100%;
 }
@@ -174,30 +180,28 @@ main {
 
 /* FOOTER */
 footer {
-  background-color: #F4F7F8;
+  background-color: #f4f7f8;
   text-align: center;
-  padding: 17px 0 50px 0;
+  padding: 17px 0 50px;
   width: 100%;
   margin-top: 50px;
 }
 
-footer>div>p {
+footer div p {
   max-width: 650px;
   margin: auto;
 }
 
 /* ---NAVIGATION--- */
+
 /* HEADER NAVIGATION */
-nav>ul {
+nav ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-nav>ul>li {
-}
-
-nav>ul>li>a {
+nav ul li a {
   margin: 0 15px;
   text-transform: uppercase;
   text-decoration: none;
@@ -206,17 +210,17 @@ nav>ul>li>a {
   padding-right: 600px;
 }
 
-nav>ul>li>a:visited {
+nav ul li a:visited {
   color: #005080;
 }
 
-nav>ul>li>a:hover,
-nav>ul>li>a:focus {
+nav ul li a:hover,
+nav ul li a:focus {
   color: #005080;
 }
 
-nav>ul>li>a:active {
-  color: #80A8BF;
+nav ul li a:active {
+  color: #80a8bf;
 }
 
 nav ul li.active {
@@ -228,7 +232,8 @@ nav ul li.active {
   display: none;
 }
 
-.navtoggle, .navtoggle.responsive {
+.navtoggle,
+.navtoggle.responsive {
   position: relative;
 }
 
@@ -244,13 +249,14 @@ nav ul li.active {
 .navtoggle.responsive nav {
   padding: 24px 0 0;
 }
+
 .navtoggle.responsive li {
   display: block;
   padding: 10px 0;
-  border-top: 1px solid #BFD3DF;
+  border-top: 1px solid #bfd3df;
 }
 
-.navtoggle.responsive li:last-child  {
+.navtoggle.responsive li:last-child {
   padding: 0 0 70px;
 }
 
@@ -263,28 +269,32 @@ nav ul li.active {
 }
 
 /* FOOTER NAVIGATION */
+
 /* links to social media */
 .social-links {
   list-style-type: none;
-  padding: 0px;
+  padding: 0;
   text-align: center;
 }
 
-.social-links>li {
+.social-links li {
   display: inline-block;
   padding: 10px;
 }
 
 /* --- LAYOUT STYLING --- */
-/* SITE WIDE LAYOUT STYLING*/
+
+/* SITE WIDE LAYOUT STYLING */
 .container {
   /* wrapper to hold layout together, max size and centred on page. class applied to div after first tag in each section */
   padding: 0 15px;
+
   /* left and right padding ensures none of the content inside is flush against edges of screen  */
 }
 
 .row {
   margin: 25px 0;
+
   /* 25px top and bottom, 0 left and right */
 }
 
@@ -302,11 +312,12 @@ nav ul li.active {
 .page-heading {
   padding: 25px 0;
 }
-/* HOME PAGE LAYOUT STYLING*/
+
+/* HOME PAGE LAYOUT STYLING */
 #home-content .row {
   padding-bottom: 50px;
   margin-top: 50px;
-  border-bottom: 1px solid #80A8BF;
+  border-bottom: 1px solid #80a8bf;
 }
 
 #home-content .row:last-child {
@@ -315,9 +326,9 @@ nav ul li.active {
 }
 
 #home-hero {
-  background-color: #F4F7F8;
+  background-color: #f4f7f8;
   text-align: center;
-  padding: 40px 0 50px 0;
+  padding: 40px 0 50px;
   margin-bottom: 5px;
   display: inline-block;
   width: 100%;
@@ -340,19 +351,16 @@ nav ul li.active {
   display: inline-block;
 }
 
-/* svg animation*/
+/* svg animation */
 svg {
   width: 100%;
   max-width: 100%;
   height: auto;
 }
 
-
 /* ABOUT PAGE LAYOUT STYLING */
 
 /* WEE QUESTS PAGE LAYOUT STYLING */
-
-
 #project-content h2 {
   margin-top: 50px;
 }
@@ -373,7 +381,6 @@ svg {
 /* specific image styling */
 #alba-flying {
   padding-top: 50px;
-
 }
 
 /* --- KEYFRAMES --- */
@@ -381,14 +388,17 @@ svg {
 /* animations */
 @keyframes color-change {
   from {
-    fill: #F8A553;
+    fill: #f8a553;
   }
+
   to {
-    fill: #F87F53;
+    fill: #f87f53;
   }
+
   from {
-    transform: translate(272px, 50px)scale(1);
+    transform: translate(272px, 50px) scale(1);
   }
+
   to {
     transform: translate(400px, 200px) scale(1.4);
   }
@@ -404,7 +414,7 @@ svg {
 
 @keyframes cloud-move {
   from {
-    transform: translate(0,0);
+    transform: translate(0, 0);
   }
 
   to {
@@ -436,265 +446,268 @@ svg {
 
 @keyframes sky-change {
   from {
-    fill: #FEEFE9;
-  }
-  to {
-    fill: #FBB9A9;
+    fill: #feefe9;
   }
 
+  to {
+    fill: #fbb9a9;
+  }
 }
+
 .sky {
   animation: 10s sky-change infinite alternate linear;
 }
 
-
 @keyframes foreground-change {
-from {
-  fill: #80A0BF;
-}
-to {
-  fill: #4D7AA7;
+  from {
+    fill: #80a0bf;
+  }
+
+  to {
+    fill: #4d7aa7;
+  }
 }
 
-}
 .scene {
   animation: 10s foreground-change infinite alternate linear;
 }
 
 /* ------------------------ MEDIA QUERIES ------------------------ */
+
 /* ---MEDIUM DEVICES (640PX AND LARGER---) */
 @media only screen and (min-width: 640px) {
-/* ---MEDIUM GENERAL STYLING--- */
-/* M body */
-body {
-  font-size: 18px;
-}
-/* M headings */
-/* M images */
-/* M iframes */
-/* M links */
-/* M primary buttons */
-/* M seconary buttons */
-/* M logo */
-/*.logo {
-  max-width: 60px;
-  margin: 15px;
-}
-/* M social media icons */
-/* M copyright */
+  /* ---MEDIUM GENERAL STYLING--- */
 
-/* --- MEDIUM SECTION STYLING--- */
-/* M HEADER */
-header {
-  text-align: unset;
-  padding: 15px 0 8px;
-}
-/* M MAIN */
-main {
-  padding-top: 60px;
-}
-/* M FOOTER */
+  /* M body */
+  body {
+    font-size: 18px;
+  }
 
-/* --- MEDIUM NAVIGATION--- */
-/* M HEADER NAVIGATION */
-nav {
-  width: auto;
-  float: right;
-  margin-top: 8px;
-  display: inline-block;
-}
+  /* M headings */
 
-/nav > ul {
-  margin: 1em 0;
-}
+  /* M images */
 
-nav>ul>li {
-  display: inline-block;
-}
+  /* M iframes */
 
-nav ul li a {
-  padding-right: 0;
-}
+  /* M links */
 
-nav>ul>li>a:hover,
-nav>ul>li>a:focus {
-  color: #005080;
-  border-bottom: 3px solid #BFD3DF;
-}
+  /* M primary buttons */
 
-nav ul li.active a {
-  border-bottom: 3px solid #BFD3DF;
-}
+  /* M seconary buttons */
 
-nav ul li.active {
-  background: none;
-}
+  /* M logo */
 
-.navtoggle.responsive nav {
-  padding: 0;
-}
+  /* M social media icons */
 
-.navtoggle.responsive li {
-  padding: 0;
-}
+  /* M copyright */
 
-.navtoggle li:not(:last-child) {
-display: inline-block;
-border-top: none;
-}
+  /* --- MEDIUM SECTION STYLING--- */
 
-.navtoggle li:last-child {
-display: none;
-}
+  /* M HEADER */
+  header {
+    text-align: unset;
+    padding: 15px 0 8px;
+  }
 
-/* M FOOTER NAVIGATION */
-/* M links to social media */
+  /* M MAIN */
+  main {
+    padding-top: 60px;
+  }
 
-/* --- MEDIUM LAYOUT STYLING --- */
-/* M SITE WIDE LAYOUT STYLING*/
-.col-md-6 {
-  width: 50%;
-}
+  /* M FOOTER */
 
-.row-md {
-  width: 100%;
-}
+  /* --- MEDIUM NAVIGATION--- */
 
-[class*="col-"] {
-  float: left;
-  padding: 10px;
-}
+  /* M HEADER NAVIGATION */
+  nav {
+    width: auto;
+    float: right;
+    margin-top: 8px;
+    display: inline-block;
+  }
 
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
+  nav ul {
+    margin: 1em 0;
+  }
 
-/* M HOME PAGE LAYOUT STYLING*/
+  nav ul li {
+    display: inline-block;
+  }
 
+  nav ul li a {
+    padding-right: 0;
+  }
 
+  nav ul li a:hover,
+  nav ul li a:focus {
+    color: #005080;
+    border-bottom: 3px solid #bfd3df;
+  }
 
+  nav ul li.active a {
+    border-bottom: 3px solid #bfd3df;
+  }
 
-#home-content h3 {
-  margin-top: 0;
-}
+  nav ul li.active {
+    background: none;
+  }
 
-#home-content h2 {
-  padding-left: 10px;
-}
-/* M ABOUT PAGE LAYOUT STYLING*/
-#about-content h3 {
-  margin-top: 0;
-}
+  .navtoggle.responsive nav {
+    padding: 0;
+  }
 
-#about-hero {
-  padding-top: 15px;
-}
-/* M WEE QUESTS PAGE LAYOUT STYLING*/
+  .navtoggle.responsive li {
+    padding: 0;
+  }
+
+  .navtoggle li:not(:last-child) {
+    display: inline-block;
+    border-top: none;
+  }
+
+  .navtoggle li:last-child {
+    display: none;
+  }
+
+  /* M FOOTER NAVIGATION */
+
+  /* M links to social media */
+
+  /* --- MEDIUM LAYOUT STYLING --- */
+
+  /* M SITE WIDE LAYOUT STYLING */
+  .col-md-6 {
+    width: 50%;
+  }
+
+  .row-md {
+    width: 100%;
+  }
+
+  [class*="col-"] {
+    float: left;
+    padding: 10px;
+  }
+
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  /* M HOME PAGE LAYOUT STYLING */
+  #home-content h3 {
+    margin-top: 0;
+  }
+
+  #home-content h2 {
+    padding-left: 10px;
+  }
+
+  /* M ABOUT PAGE LAYOUT STYLING */
+  #about-content h3 {
+    margin-top: 0;
+  }
+
+  #about-hero {
+    padding-top: 15px;
+  }
+
+  /* M WEE QUESTS PAGE LAYOUT STYLING */
   #project-hero {
     padding-top: 15px;
-}
+  }
+
   /* END OF MEDIUM MEDIA QUERY */
 }
 
 /* ---LARGE DEVICES (1024PX AND LARGER---) */
 @media only screen and (min-width: 1024px) {
-/* --- LARGE GENERAL STYLING--- */
-/* L body */
-/* L headings */
-/* L images */
-/* L iframes */
-/* L links */
-/* L primary buttons */
-/* L seconary buttons */
-/* L logo */
-/* L social media icons */
-/* L copyright */
+  /* --- LARGE GENERAL STYLING--- */
 
-/* ---  LARGE SECTION STYLING--- */
-/* L HEADER */
-/* L MAIN */
-/* L FOOTER */
+  /* L body */
 
-/* ---  LARGE NAVIGATION--- */
-/* L HEADER NAVIGATION */
-/* L FOOTER NAVIGATION */
-/* L links to social media */
+  /* L headings */
 
-/* ---  LARGE LAYOUT STYLING --- */
-/* L SITE WIDE LAYOUT STYLING*/
-.col-md-6 {
-  width: unset;
-  padding-top: 0;
-}
+  /* L images */
 
-.col-lg-7 {
-  width: 58.33%;
-}
+  /* L iframes */
 
-.col-lg-5 {
-  width: 41.66%;
-}
+  /* L links */
 
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
+  /* L primary buttons */
 
-.container {
-  max-width: 930px;
-  margin-left: auto;
-  margin-right: auto;
-}
+  /* L seconary buttons */
 
-/* L HOME PAGE LAYOUT STYLING*/
-#home-content h2 {
-  padding-left: 10px;
-}
+  /* L logo */
 
-/* L ABOUT PAGE LAYOUT STYLING*/
-#about-content h3 {
-  margin-top: 0;
-}
+  /* L social media icons */
 
-#skills-tools-lg {
-  padding-left: 80px;
-}
-/* L WEE QUESTS PAGE LAYOUT STYLING*/
+  /* L copyright */
 
-/* END OF LARGE MEDIA QUERY */
+  /* ---  LARGE SECTION STYLING--- */
+
+  /* L HEADER */
+
+  /* L MAIN */
+
+  /* L FOOTER */
+
+  /* ---  LARGE NAVIGATION--- */
+
+  /* L HEADER NAVIGATION */
+
+  /* L FOOTER NAVIGATION */
+
+  /* L links to social media */
+
+  /* ---  LARGE LAYOUT STYLING --- */
+
+  /* L SITE WIDE LAYOUT STYLING */
+  .col-md-6 {
+    width: unset;
+    padding-top: 0;
+  }
+
+  .col-lg-7 {
+    width: 58.33%;
+  }
+
+  .col-lg-5 {
+    width: 41.66%;
+  }
+
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .container {
+    max-width: 930px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* L HOME PAGE LAYOUT STYLING */
+  #home-content h2 {
+    padding-left: 10px;
+  }
+
+  /* L ABOUT PAGE LAYOUT STYLING */
+  #about-content h3 {
+    margin-top: 0;
+  }
+
+  #skills-tools-lg {
+    padding-left: 80px;
+  }
+
+  /* L WEE QUESTS PAGE LAYOUT STYLING */
+
+  /* END OF LARGE MEDIA QUERY */
 }
 
 /* ---X LARGE DEVICES (1024PX AND LARGER---) */
-@media only screen and (min-width: 1140px) {
-/* --- X LARGE GENERAL STYLING--- */
-/* XL body */
-/* XL headings */
-/* XL images */
-/* XL iframes */
-/* XL links */
-/* XL primary buttons */
-/* XL seconary buttons */
-/* XL logo */
-/* XL social media icons */
-/* XL copyright */
 
-/* ---  X LARGE SECTION STYLING--- */
-/* XL HEADER */
-/* XL MAIN */
-/* XL FOOTER */
-
-/* ---  X LARGE NAVIGATION--- */
-/* XL HEADER NAVIGATION */
-/* XL FOOTER NAVIGATION */
-/* XL links to social media */
-
-/* --- X LARGE LAYOUT STYLING --- */
-/* XL SITE WIDE LAYOUT STYLING*/
-/* XL HOME PAGE LAYOUT STYLING*/
-/* XL ABOUT PAGE LAYOUT STYLING*/
-/* XL WEE QUESTS PAGE LAYOUT STYLING*/
-/* END OF X LARGE MEDIA QUERY */
-}
+@media only screen and (min-width: 1140px)
