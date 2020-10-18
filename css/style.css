@@ -362,7 +362,7 @@ svg {
 
 /* WEE QUESTS PAGE LAYOUT STYLING */
 #project-content h2 {
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 #project-content h3 {
@@ -377,6 +377,33 @@ svg {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+#testing {
+  background-color: #E4FAFF;
+  padding-bottom: 20px;
+}
+
+#testing h3 {
+  padding-top: 20px;
+}
+
+#testing h3 span {
+  font-weight: 300;
+}
+
+#refining {
+  background-color: #E8F6FC;
+  padding-bottom: 20px;
+}
+
+#refining h3 {
+  padding-top: 20px;
+}
+
+#refining h3 span {
+  font-weight: 300;
+}
+
 
 /* specific image styling */
 #alba-flying {
