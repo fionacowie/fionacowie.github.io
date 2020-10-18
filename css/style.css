@@ -378,6 +378,18 @@ svg {
   padding-bottom: 10px;
 }
 
+#researching {
+  background-color:#DFF1FC;
+  padding-bottom: 20px;
+}
+
+#researching h3 {
+  padding-top: 20px;
+}
+
+#researching h3 span {
+  font-weight: 300;
+}
 #testing {
   background-color: #E4FAFF;
   padding-bottom: 20px;
