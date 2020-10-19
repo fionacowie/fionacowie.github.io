@@ -120,7 +120,7 @@ a:active {
   background-color: #00263d;
 }
 
-#coming-soon {
+.button:disabled {
   background: none;
   color: #407ca0;
 }
@@ -130,9 +130,7 @@ a:active {
   background-color: transparent;
   color: #005080;
   text-transform: uppercase;
-  border-top: 2px solid #005080;
-  border-right: 2px solid #005080;
-  border-left: 2px solid #005080;
+  border: 2px solid #005080;
   text-align: center;
 }
 
@@ -348,7 +346,7 @@ nav ul li.active {
 }
 
 #home-content span {
-  display: inline-block;
+  display: block;
 }
 
 /* svg animation */
