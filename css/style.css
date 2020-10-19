@@ -131,6 +131,7 @@ a:active {
   color: #005080;
   text-transform: uppercase;
   border: 2px solid #005080;
+  border-bottom: 2px solid #005080;
   text-align: center;
 }
 
