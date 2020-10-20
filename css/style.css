@@ -125,6 +125,11 @@ a:active {
   color: #407ca0;
 }
 
+.button.cv {
+margin-top: 20px;
+margin-bottom: 20px;
+}
+
 /* seconary buttons */
 .button.contact {
   background-color: transparent;
@@ -206,7 +211,6 @@ nav ul li a {
   text-decoration: none;
   font-weight: 600;
   color: #005080;
-  padding-right: 600px;
 }
 
 nav ul li a:visited {
@@ -361,11 +365,11 @@ svg {
 
 /* WEE QUESTS PAGE LAYOUT STYLING */
 #project-content h2 {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 #project-content h3 {
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 #project-content span {
@@ -413,6 +417,14 @@ svg {
 
 #refining h3 span {
   font-weight: 300;
+}
+
+#find {
+  background-color: #DFF1FC;
+}
+
+#find h3 {
+  padding-top: 20px;
 }
 
 
@@ -650,6 +662,14 @@ svg {
   /* M WEE QUESTS PAGE LAYOUT STYLING */
   #project-hero {
     padding-top: 15px;
+  }
+
+  #project-content h2 {
+    margin-top: 100px;
+  }
+
+  #project-content h3 {
+    margin-top: 50px;
   }
 
   /* END OF MEDIUM MEDIA QUERY */
