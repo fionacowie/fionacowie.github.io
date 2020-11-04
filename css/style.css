@@ -204,16 +204,14 @@ nav ul {
   padding: 0;
   margin: 0;
 }
-nav ul a {
-  display: block;
-}
 
 nav ul li a {
-  margin: 0 15px;
   text-transform: uppercase;
   text-decoration: none;
   font-weight: 600;
   color: #005080;
+  padding: 12px 15px;
+  display: block;
 }
 
 nav ul li a:visited {
@@ -248,6 +246,7 @@ nav ul li.active {
   right: 0;
   top: 2px;
   font-size: 20px;
+  padding-top: 5px;
   padding-right: 0;
   border-bottom: none;
 }
@@ -258,7 +257,6 @@ nav ul li.active {
 
 .navtoggle.responsive li {
   display: block;
-  padding: 10px 0;
   border-top: 1px solid #bfd3df;
 }
 
@@ -584,7 +582,8 @@ svg {
   }
 
   nav ul li a {
-    padding-right: 0;
+    padding: 0;
+    margin: 0 15px;
   }
 
   nav ul li a:hover,
