@@ -27,6 +27,10 @@ body {
   color: #4c4c4c;
 }
 
+b {
+  font-weight: 600;
+}
+
 /* headings */
 
 h1,
@@ -170,9 +174,9 @@ margin-bottom: 20px;
 
 /* HEADER */
 header {
-  background-color: #f4f7f8;
+  background-color: #fdfdfd;
   padding: 10px 0 3px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.16);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.08);
   position: fixed;
   width: 100%;
 }
@@ -208,19 +212,19 @@ nav ul {
 nav ul li a {
   text-transform: uppercase;
   text-decoration: none;
-  font-weight: 600;
-  color: #005080;
+  font-weight: 300;
+  color: #4c4c4c;
   padding: 12px 15px;
   display: block;
 }
 
 nav ul li a:visited {
-  color: #005080;
+  color: #4c4c4c;
 }
 
 nav ul li a:hover,
 nav ul li a:focus {
-  color: #005080;
+  color: #4c4c4c;
 }
 
 nav ul li a:active {
@@ -523,6 +527,79 @@ svg {
   animation: 10s foreground-change infinite alternate linear;
 }
 
+/* animations for hero banner */
+@keyframes stars-one {
+  from {
+    fill: #ffffff;
+  }
+
+  to {
+    fill: #86A4B7;
+  }
+}
+
+  .stars-one {
+    animation-duration: 0.3s;
+    animation-name: stars-one;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: ease-in-out;
+  }
+
+  @keyframes stars-four {
+    from {
+      fill: #ffffff;
+    }
+
+    to {
+      fill: #7698AE;
+    }
+  }
+
+    .stars-four {
+      animation-duration: 0.4s;
+      animation-name: stars-four;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-timing-function: ease-in-out;
+    }
+
+  @keyframes stars-two {
+    from {
+      fill: #86A4B7;
+    }
+
+    to {
+      fill: #ffffff;
+    }
+  }
+
+    .stars-two {
+      animation-duration: 0.3s;
+      animation-name: stars-two;
+      animation-iteration-count: infinite;
+      animation-direction: alternate-reverse;
+      animation-timing-function: ease-in-out;
+    }
+
+    @keyframes stars-three {
+      from {
+        fill: #7698AE;
+      }
+
+      to {
+        fill: #ffffff;
+      }
+    }
+
+      .stars-three {
+        animation-duration: 0.4s;
+        animation-name: stars-three;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: ease-in-out;
+      }
+
 /* ------------------------ MEDIA QUERIES ------------------------ */
 
 /* ---MEDIUM DEVICES (640PX AND LARGER---) */
@@ -535,6 +612,9 @@ svg {
   }
 
   /* M headings */
+  .hello {
+    color: pink;
+  }
 
   /* M images */
 
@@ -583,12 +663,12 @@ svg {
 
   nav ul li a {
     padding: 0;
-    margin: 0 15px;
+    margin: 0 0 0 40px;
   }
 
   nav ul li a:hover,
   nav ul li a:focus {
-    color: #005080;
+    color: #4c4c4c;
     border-bottom: 3px solid #bfd3df;
   }
 

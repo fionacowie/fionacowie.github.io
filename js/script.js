@@ -9,6 +9,9 @@ function menuToggle () {
   }
 }
 
+
+//document.getElementById('myNavtoggle').addEventListener("focusout", menuToggle);
+
 // Smooth Scrolling //
 $(document).ready(function () {
   // Add smooth scrolling to contact ID//
