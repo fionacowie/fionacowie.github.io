@@ -192,7 +192,7 @@ footer {
   text-align: center;
   padding: 17px 0 50px;
   width: 100%;
-  margin-top: 50px;
+  margin-top: 150px;
 }
 
 footer div p {
@@ -747,7 +747,7 @@ svg {
   }
 
   #project-content h2 {
-    margin-top: 100px;
+    margin-top: 50px;
   }
 
   #project-content h3 {
