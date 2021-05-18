@@ -342,6 +342,10 @@ nav ul li.active {
   width: 100%;
 }
 
+.home-intro {
+    background-color: #004067;
+}
+
 #home-hero h1 {
   margin-top: 0;
 }
@@ -612,9 +616,6 @@ svg {
   }
 
   /* M headings */
-  .hello {
-    color: pink;
-  }
 
   /* M images */
 
