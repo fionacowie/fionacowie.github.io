@@ -328,6 +328,12 @@ nav ul li.active {
   border-bottom: 1px solid #80a8bf;
 }
 
+#home-content .row:first-child {
+  padding-bottom: 0px;
+  margin-top: 50px;
+  border-bottom: 1px solid #80a8bf;
+}
+
 #home-content .row:last-child {
   border-bottom: none;
   padding-bottom: 0;
@@ -378,6 +384,16 @@ svg {
 }
 
 /* ABOUT PAGE LAYOUT STYLING */
+#about-content .row {
+  padding-bottom: 50px;
+  margin-top: 50px;
+  border-bottom: 1px solid #80a8bf;
+}
+
+#about-content .row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
 
 /* WEE QUESTS PAGE LAYOUT STYLING */
 #project-content h2 {
