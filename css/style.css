@@ -138,7 +138,7 @@ margin-bottom: 20px;
 .button.contact {
   background-color: transparent;
   color: #005080;
-  border: 1px solid #005080;
+  border: 2px solid #005080;
   text-align: center;
 }
 
@@ -190,7 +190,7 @@ footer {
   text-align: center;
   padding: 17px 0 50px;
   width: 100%;
-  margin-top: 150px;
+  margin-top: 75px;
 }
 
 footer div p {
@@ -298,6 +298,10 @@ nav ul li.active {
   /* left and right padding ensures none of the content inside is flush against edges of screen  */
 }
 
+.project-container {
+  padding: 0 15px;
+}
+
 .row {
   margin: 25px 0;
 
@@ -321,16 +325,12 @@ nav ul li.active {
 
 /* HOME PAGE LAYOUT STYLING */
 #home-content .row {
-  padding-bottom: 50px;
-  margin-top: 50px;
+  margin-top: 60px;
+  padding-bottom: 80px;
   border-bottom: 1px solid #80a8bf;
 }
 
-#home-content .row:first-child {
-  padding-bottom: 0px;
-  margin-top: 50px;
-  border-bottom: 1px solid #80a8bf;
-}
+
 
 #home-content .row:last-child {
   border-bottom: none;
@@ -347,6 +347,10 @@ nav ul li.active {
 }
 
 #home-intro {
+    background-color: #004067;
+}
+
+#home-about {
     background-color: #004067;
 }
 
@@ -394,6 +398,7 @@ svg {
 }
 
 /* WEE QUESTS PAGE LAYOUT STYLING */
+
 #project-content h2 {
   margin-top: 50px;
 }
@@ -628,7 +633,7 @@ svg {
 /* ------------------------ MEDIA QUERIES ------------------------ */
 
 /* ---MEDIUM DEVICES (640PX AND LARGER---) */
-@media only screen and (min-width: 640px) {
+@media only screen and (min-width: 769px) {
   /* ---MEDIUM GENERAL STYLING--- */
 
   /* M body */
@@ -754,6 +759,10 @@ svg {
     padding-left: 10px;
   }
 
+  .summary {
+    padding-left: 20px;
+  }
+
   /* M ABOUT PAGE LAYOUT STYLING */
   #about-content h3 {
     margin-top: 0;
@@ -842,7 +851,7 @@ svg {
   }
 
   .container {
-    max-width: 930px;
+    max-width: 90%;
     margin-left: auto;
     margin-right: auto;
   }
@@ -861,7 +870,16 @@ svg {
     padding-left: 80px;
   }
 
+  .col-lg-6 {
+    width: 50%;
+  }
+
   /* L WEE QUESTS PAGE LAYOUT STYLING */
+  .project-container {
+    max-width: 930px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   /* END OF LARGE MEDIA QUERY */
 }
