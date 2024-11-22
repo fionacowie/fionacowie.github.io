@@ -337,6 +337,10 @@ nav ul li.active {
   padding-bottom: 0;
 }
 
+#hero {
+  background-color: red;
+}
+
 #home-hero {
   background-color: #f4f7f8;
   text-align: center;
