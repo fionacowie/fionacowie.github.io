@@ -1524,7 +1524,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
     }
 
     .content-image {
-        margin: 24px 0; /* Reduced from 32px to 24px on mobile */
+        margin: 32px 0 24px 0; /* Increased top margin to match text to section heading spacing*/
     }
 
     .focus-text {
@@ -1717,7 +1717,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
     }
 
     .content-image {
-        margin: 20px 0; /* Further reduced margins */
+         margin: 36px 0 24px 0; /* Increased top margin to match text to section heading spacing*/
     }
 
     .next-case-study {
