@@ -1534,7 +1534,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
 
     /* Next case study mobile */
     .next-case-study {
-        margin-top: 64px; /* Increase from 40px for better separation */
+        margin: 56px 0 72px 0; /* Improve breathing space */
         padding: 0; /* REMOVE padding from section level on mobile */
         background-color: #F6F3EF; /* MAINTAIN main page background */
     }
@@ -1722,7 +1722,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
 
     .next-case-study {
         padding: 0; /* REMOVE padding from section level on small mobile */
-        margin-top: 56px; /* Increase from 32px for better separation */
+        margin: 56px 0 72px 0; /* Improve breathing space */
         background-color: #F6F3EF; /* MAINTAIN main page background */
     }
 
