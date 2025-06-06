@@ -1613,7 +1613,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
 
     /* Mobile spacing adjustments */
     .section-title {
-        margin-bottom: 24px; /* Further reduced on mobile */
+        margin-bottom: 32px; /* Increased spacing on mobile */
         margin-left: 0; /* Remove custom margins - let container handle spacing */
         margin-right: 0; /* Remove custom margins - let container handle spacing */
     }
@@ -1739,7 +1739,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
 
     /* Small mobile spacing */
     .section-title {
-        margin-bottom: 20px; /* Further reduced */
+        margin-bottom: 28px; /* Increased spacing on mobile */
         margin-left: 0; /* Remove custom margins - let container handle spacing */
         margin-right: 0; /* Remove custom margins - let container handle spacing */
     }
