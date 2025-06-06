@@ -570,7 +570,7 @@ body:has(.case-study-hero [src*="cs2-cover"]) .pull-quote:hover {
 }
 
 .mobile-nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
+    transform: rotate(45deg) translate(4.2px, 4.2px);
 }
 
 .mobile-nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
@@ -578,7 +578,7 @@ body:has(.case-study-hero [src*="cs2-cover"]) .pull-quote:hover {
 }
 
 .mobile-nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+    transform: rotate(-45deg) translate(4.2px, -4.2px);
 }
 
 /* Case Study Navigation */
