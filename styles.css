@@ -1,0 +1,1777 @@
+/* Page Transition Animations - FASTER for modern feel */
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+/* Page transition states - MUCH FASTER */
+.page-transitioning {
+    overflow-x: hidden;
+}
+
+.slide-in-from-right {
+    animation: slideInFromRight 300ms ease-out forwards;
+}
+
+.slide-out-to-right {
+    animation: slideOutToRight 250ms ease-in forwards;
+}
+
+.slide-in-from-left {
+    animation: slideInFromLeft 300ms ease-out forwards;
+}
+
+.slide-out-to-left {
+    animation: slideOutToLeft 250ms ease-in forwards;
+}
+
+/* Respect reduced motion preferences for microinteractions and page transitions */
+@media (prefers-reduced-motion: reduce) {
+    .slide-in-from-right,
+    .slide-out-to-right,
+    .slide-in-from-left,
+    .slide-out-to-left {
+        animation: none !important;
+    }
+    
+    .focus-text,
+    .pull-quote {
+        transition: none !important;
+    }
+    
+    .focus-text:hover,
+    .pull-quote:hover {
+        transform: none !important;
+    }
+    
+    main {
+        transition: none !important;
+    }
+}
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Initialize page with no transition on first load */
+body {
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #000000;
+    background-color: #F6F3EF;
+    overflow-x: hidden; /* Prevent horizontal scroll during transitions */
+}
+
+/* Apply initial positioning to main content only, not body */
+main {
+    /* Apply initial transform and visibility if set by transition script */
+    transform: var(--initial-transform, translateX(0));
+    opacity: var(--initial-opacity, 1);
+    visibility: var(--initial-visibility, visible);
+    transition: all 0.3s ease;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+    position: absolute;
+    top: -100px; /* Move further off-screen to ensure it's completely hidden */
+    left: 6px;
+    background: #000000;
+    color: #ffffff;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 1000;
+    border-radius: 0 0 4px 4px;
+    opacity: 0; /* Make completely invisible when not focused */
+    transition: all 0.2s ease; /* Smooth transition */
+}
+
+.skip-link:focus {
+    top: 0;
+    opacity: 1; /* Fully visible when focused */
+}
+
+/* Container - Updated for optimal margins across all screen sizes */
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px; /* Reduced from 24px - mobile best practice */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 12px; /* Reduced from 20px - small mobile optimization */
+    }
+}
+
+/* Focus indicators */
+:focus {
+    outline: 2px solid #FF5D3C;
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid #FF5D3C;
+    outline-offset: 2px;
+}
+
+/* Typography */
+.hero-title {
+    font-size: clamp(60px, 6.67vw, 96px); /* Increased from 48px to 60px for better mobile proportion */
+    font-weight: 700;
+    font-style: italic;
+    text-transform: uppercase;
+    line-height: clamp(0.9, 0.95, 1); /* Slightly more generous on mobile */
+    letter-spacing: clamp(-0.02em, -0.015em, -0.01em); /* Responsive tighter spacing for premium feel */
+    margin-bottom: 24px;
+    /* UPDATED: Coral-fade gradient for HELLO */
+    background: linear-gradient(135deg, #FF5D3C 0%, #FCA098 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    /* Ensure text doesn't get clipped */
+    padding-right: 4px; /* Small right padding to prevent gradient clipping */
+}
+
+.section-title {
+    font-size: clamp(32px, 4.44vw, 64px);
+    font-weight: 700;
+    font-style: italic;
+    text-transform: uppercase;
+    line-height: clamp(1.0, 1.05, 1.1); /* More generous on mobile */
+    letter-spacing: clamp(-0.015em, -0.01em, -0.005em); /* Responsive letter spacing */
+    margin-bottom: 40px; /* Reduced from 56px to 40px for tighter spacing */
+    margin-left: 0; /* Removed left margin to align with page margins */
+    margin-right: 0; /* Removed right margin to align with page margins */
+}
+
+.subsection-title {
+    font-size: clamp(20px, 1.67vw, 24px);
+    font-weight: 700;
+    font-style: italic;
+    text-transform: uppercase;
+    line-height: clamp(1.2, 1.25, 1.3); /* More generous on mobile */
+    letter-spacing: clamp(-0.01em, -0.005em, 0em); /* Subtle responsive spacing */
+    margin-bottom: 16px;
+}
+
+/* ADDED: Softer card headings specifically for home page about section */
+.about .subsection-title {
+    font-size: clamp(26px, 2.1vw, 32px); /* INCREASED from 22-26px to 26-32px for better proportion */
+    font-weight: 600; /* Softer than bold but stronger than regular */
+    font-style: normal; /* Remove italic for softer feel */
+    text-transform: none; /* Remove uppercase for sentence case */
+    line-height: clamp(1.25, 1.3, 1.35); /* Generous line height for readability */
+    letter-spacing: clamp(-0.005em, 0em, 0.005em); /* Subtle spacing for sentence case */
+    margin-bottom: 16px;
+}
+
+.case-study-title {
+    font-size: clamp(24px, 2.22vw, 32px);
+    font-weight: 500; /* Bumped from 400 to 500 for better hierarchy */
+    line-height: clamp(1.25, 1.3, 1.35); /* Improved mobile readability */
+    letter-spacing: clamp(-0.005em, 0em, 0.005em); /* Subtle spacing adjustment */
+    margin-bottom: 4px; /* Reduced from 8px for tighter grouping with subtitle */
+}
+
+.case-study-subtitle {
+    font-size: clamp(24px, 2.22vw, 32px);
+    font-weight: 400; /* Keep regular for contrast with title */
+    line-height: clamp(1.25, 1.3, 1.35); /* Match title for consistency */
+    letter-spacing: clamp(-0.005em, 0em, 0.005em); /* Match title spacing */
+}
+
+.hero-paragraph {
+    font-size: clamp(24px, 2.22vw, 32px);
+    font-weight: 500; /* Reduced from 600 to medium weight for better balance */
+    line-height: clamp(1.35, 1.4, 1.45); /* More generous on mobile for readability */
+    letter-spacing: clamp(-0.005em, 0em, 0.005em); /* Subtle spacing for readability */
+}
+
+/* Emphasize key phrase within hero paragraph */
+.hero-paragraph strong {
+    font-weight: 700; /* Bold weight for "bring ideas to life" emphasis */
+}
+
+.body-text {
+    font-size: clamp(20px, 1.67vw, 24px);
+    font-weight: 400;
+    line-height: clamp(1.5, 1.6, 1.65); /* More generous on mobile */
+    letter-spacing: clamp(0em, 0.005em, 0.01em); /* Slightly more open for readability */
+    margin-bottom: 20px;
+}
+
+.body-text-secondary {
+    font-size: clamp(18px, 1.39vw, 20px);
+    font-weight: 400;
+    line-height: clamp(1.5, 1.6, 1.65); /* Consistent with body-text */
+    letter-spacing: clamp(0em, 0.005em, 0.01em); /* Match body-text spacing */
+    margin-bottom: 16px;
+}
+
+.pull-quote {
+    font-size: clamp(28px, 2.5vw, 36px);
+    font-weight: 400;
+    line-height: 1.3;
+    text-align: center;
+    margin: 60px 0; /* Back to standard margins */
+    padding: 60px 40px;
+    /* DEFAULT: Case study 1 pull quote gradient */
+    background: linear-gradient(135deg, #FBE1DD 0%, #FAEEEA 100%);
+    cursor: pointer; /* Indicate interactivity */
+    transition: all 0.3s ease; /* Smooth transitions */
+    /* Remove max-width from container - let background extend full width */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content */
+}
+
+/* Constrain the content inside pull quotes */
+.pull-quote > * {
+    max-width: 700px; /* Constrain content width for better readability */
+}
+
+/* Add responsive padding for pull quotes */
+@media (max-width: 768px) {
+    .pull-quote {
+        padding: 50px 20px; /* More generous mobile padding */
+        margin: 50px 0; /* Standard margins */
+    }
+}
+
+@media (max-width: 480px) {
+    .pull-quote {
+        padding: 40px 20px; /* Generous padding for small mobile breathing room */
+        margin: 40px 0; /* Proportional margins */
+    }
+    
+    .pull-quote > * {
+        max-width: none; /* Use full width on small screens */
+    }
+}
+
+.pull-quote:hover {
+    transform: scale(1.02);
+    /* Darken the default gradient by ~15% */
+    background: linear-gradient(135deg, #F0CFC9 0%, #E6D4D0 100%);
+}
+
+/* Override ONLY for case study 2 pages */
+body:has(.case-study-hero [src*="cs2-cover"]) .pull-quote {
+    /* Case study 2 pull quote gradient */
+    background: linear-gradient(135deg, #FEC9DE 0%, #FCE3EB 100%);
+}
+
+/* Case study 2 pull quote hover effect */
+body:has(.case-study-hero [src*="cs2-cover"]) .pull-quote:hover {
+    /* Darken the case study 2 gradient by ~15% */
+    background: linear-gradient(135deg, #FEAFC9 0%, #E8CFD7 100%);
+}
+
+.pull-quote cite {
+    display: block;
+    font-size: clamp(16px, 1.11vw, 16px);
+    font-weight: 400;
+    font-style: normal; /* Remove default italic styling */
+    text-transform: uppercase;
+    margin-top: 20px;
+    color: rgba(0, 0, 0, 0.75); /* Consistent 75% opacity for all caption text */
+}
+
+.meta-label {
+    font-size: clamp(14px, 1.11vw, 16px);
+    font-weight: 400;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.75); /* 75% opacity for lighter appearance */
+    margin-bottom: 8px;
+}
+
+.meta-content {
+    font-size: clamp(16px, 1.39vw, 20px);
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    color: rgba(0, 0, 0, 0.75); /* 75% opacity for lighter "In-house product designer" text */
+}
+
+.personal-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 32px 0;
+    padding: 32px;
+    /* Removed background-color for case study pages */
+}
+
+.personal-note svg,
+.personal-note img {
+    flex-shrink: 0;
+    margin-top: 0; /* REMOVED margin-top for proper top alignment */
+    color: #FF5D3C;
+    width: clamp(45px, 5vw, 63px); /* INCREASED to another 1.5x for optimal visibility */
+    height: clamp(45px, 5vw, 63px);
+}
+
+.personal-note p {
+    font-style: italic;
+    font-size: clamp(16px, 1.39vw, 20px);
+    margin: 0;
+}
+
+/* Navigation - Fixed positioning */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(246, 243, 239, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    padding: 24px 0;
+    height: 88px;
+}
+
+.nav-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    gap: 60px; /* Space between logo and nav items */
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 16px; /* Updated to match new mobile margin system */
+        gap: 40px; /* Reduced gap on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 12px; /* Updated to match new small mobile margin system */
+        gap: 32px; /* Further reduced gap on small mobile */
+    }
+}
+
+.logo {
+    font-size: clamp(24px, 2.22vw, 32px);
+    font-weight: 700;
+    text-decoration: none;
+    color: #000000;
+    letter-spacing: 0.05em;
+}
+
+.desktop-nav {
+    display: flex;
+    list-style: none;
+    gap: 0px; /* No gap - nav items will touch each other */
+}
+
+/* UPDATED: Navigation link styles with invisible bold duplicate technique */
+.nav-link {
+    font-size: clamp(16px, 1.39vw, 20px);
+    font-weight: 400;
+    text-decoration: none;
+    color: #000000;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+/* UPDATED: Navigation link styles with invisible bold duplicate technique */
+.nav-link {
+    font-size: clamp(16px, 1.39vw, 20px);
+    text-decoration: none;
+    color: transparent; /* Hide original text */
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+/* Create invisible bold duplicate to reserve space without affecting vertical layout */
+.nav-link::before {
+    content: attr(data-text);
+    font-weight: 700;
+    font-size: clamp(16px, 1.39vw, 20px);
+    visibility: hidden;
+    display: inline-block;
+    height: 0;
+    overflow: hidden;
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* Position the actual visible text centered within the reserved space */
+.nav-link::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(16px, 1.39vw, 20px);
+    font-weight: 400;
+    color: #000000;
+    white-space: nowrap;
+    transition: font-weight 0.3s ease;
+}
+
+/* UPDATED: Navigation hover/focus/active states - make the ::after text bold and add underline */
+.nav-link:hover::after,
+.nav-link:focus::after,
+.nav-link.active::after {
+    font-weight: 700;
+    border-bottom: clamp(4px, 0.49vw, 7px) solid #FFABCC;
+    margin-bottom: -clamp(4px, 0.49vw, 7px);
+}
+
+/* Mobile Navigation */
+.mobile-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    flex-direction: column;
+    gap: 4px;
+    width: 32px;
+    height: 32px;
+    margin-left: auto; /* Push to right on mobile */
+}
+
+.hamburger-line {
+    width: 100%;
+    height: 2px;
+    background-color: #000000;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 88px;
+    left: 0;
+    right: 0;
+    background-color: #F6F3EF;
+    padding: 20px 16px; /* Updated to match mobile margin system */
+    list-style: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-nav li {
+    margin-bottom: 16px;
+}
+
+/* Override desktop nav styling for mobile menu - ensure clean left alignment */
+.mobile-nav .nav-link {
+    color: #000000; /* Override transparent color from desktop */
+    text-align: left; /* Ensure left alignment */
+    display: block; /* Full block display for touch targets */
+    font-weight: 400; /* Reset font weight */
+    font-size: clamp(16px, 1.39vw, 20px); /* Match desktop size */
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: static; /* Override relative positioning from desktop */
+    transform: none; /* Remove any transforms */
+}
+
+/* Remove desktop pseudo-elements for mobile */
+.mobile-nav .nav-link::before,
+.mobile-nav .nav-link::after {
+    display: none;
+}
+
+/* Mobile nav link hover states */
+.mobile-nav .nav-link:hover,
+.mobile-nav .nav-link:focus,
+.mobile-nav .nav-link.active {
+    color: #FF5D3C;
+    font-weight: 700;
+}
+
+/* Adjust mobile nav padding for small mobile */
+@media (max-width: 480px) {
+    .mobile-nav {
+        padding: 20px 12px; /* Match small mobile margin system */
+    }
+}
+
+.mobile-nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.mobile-nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Case Study Navigation */
+.case-study-nav {
+    position: fixed;
+    top: 20px;
+    left: 40px; /* Match desktop container margins */
+    z-index: 100;
+}
+
+/* Responsive positioning to match container margins */
+@media (max-width: 768px) {
+    .case-study-nav {
+        left: 16px; /* Match mobile container margins */
+    }
+}
+
+@media (max-width: 480px) {
+    .case-study-nav {
+        left: 12px; /* Match small mobile container margins */
+    }
+}
+
+.back-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(251, 249, 245, 0.9);
+    border-radius: 50%;
+    color: #000000;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    /* Slightly thinner border to appear consistent with buttons on circular shape */
+    border: clamp(1.5px, 0.17vw, 2.5px) solid #000000;
+}
+
+.back-home:hover,
+.back-home:focus {
+    /* Match button hover styling */
+    background: linear-gradient(135deg, #FFC9C7 0%, #FCDEDA 100%);
+    color: #000000;
+    border: clamp(1.5px, 0.17vw, 2.5px) solid #000000;
+    box-shadow: 0 0 0 clamp(1px, 0.14vw, 2px) #000000;
+    transform: scale(1.02);
+}
+
+/* Make the arrow stroke weight match the border weight and ensure pure black */
+.back-home svg {
+    stroke: #000000; /* Ensure pure black stroke */
+    stroke-width: clamp(1.5, 0.17vw, 2.5); /* Match border thickness */
+    fill: none; /* Ensure no fill color */
+}
+
+/* Hero Section - Better spacing and height */
+.hero {
+    padding: 88px 0 56px; /* Restored bottom padding for breathing room */
+    position: relative;
+    overflow-y: visible; /* Allow content to expand if needed */
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: stretch;
+    margin-bottom: 0; /* Removed margin-bottom since no divider follows */
+    background-color: #FBF9F5;
+    min-height: 500px; /* Ensure adequate height for proper centering */
+}
+
+.hero-text {
+    padding: 60px 88px; /* Increased from 40px to 88px */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Ensure proper vertical centering */
+    align-items: flex-start; /* Keep text left-aligned */
+    height: 100%; /* Take full height of grid area */
+    gap: 24px; /* Use gap instead of margins for proper centering */
+}
+
+/* Remove margins from hero text elements to fix centering */
+.hero .hero-title {
+    margin-bottom: 0; /* Remove margin - using gap instead */
+}
+
+.hero .hero-paragraph {
+    margin-bottom: 0; /* Remove margin - using gap instead */
+}
+
+.hero-image {
+    padding: 0;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Case Study Hero */
+.case-study-hero {
+    padding: 88px 0 24px; /* Tightened to match home page - no extra gap above hero */
+    overflow-y: visible; /* Allow content to expand if needed */
+}
+
+.case-study-hero .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0; /* Remove gap for 50:50 split like home page */
+    align-items: stretch; /* Match home page card behavior */
+    max-width: 1440px; /* Match the cards on home page */
+    margin: 0 auto;
+    background-color: #FBF9F5; /* Add background to the card itself */
+    min-height: 500px; /* Ensure adequate height for proper centering */
+}
+
+.case-study-hero .hero-image {
+    padding: 0; /* Remove padding like home page cards */
+    overflow: hidden; /* Ensure image overflow is hidden */
+    margin: 0; /* Ensure no margin */
+}
+
+.case-study-hero .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* Remove any gaps around images */
+    line-height: 0;
+}
+.case-study-hero .hero-text {
+    padding: 60px 88px; /* Match home page card padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Ensure proper vertical centering */
+    align-items: center; /* Center align for case study pages */
+    text-align: center; /* CENTER ALIGN TEXT for case study pages */
+    height: 100%; /* Take full height of grid area for proper centering */
+    gap: clamp(32px, 4vw, 56px); /* Equal spacing between the three main content blocks */
+}
+
+/* Structure MY ROLE section to include ALL role information as one tight group */
+.case-study-hero .case-study-meta {
+    margin-top: 0; /* Remove margin - using gap instead */
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 0.8vw, 12px); /* Tight spacing within the entire MY ROLE block */
+    align-items: center; /* Center align the meta content */
+}
+
+/* Ensure meta content (job title and skills) stay within MY ROLE group */
+.case-study-hero .meta-content {
+    margin-bottom: 0; /* Remove default margin, using flex gap instead */
+}
+
+/* BREAK PDF LINK OUT of MY ROLE section to be a separate fourth block */
+.case-study-hero .pdf-link {
+    margin-top: clamp(32px, 4vw, 56px); /* Add the same spacing as between other main blocks */
+    position: relative; /* Ensure it's positioned independently */
+}
+
+/* Remove margins from case study hero text elements to fix centering */
+.case-study-hero .case-study-label {
+    margin-bottom: 0; /* Remove margin - using gap instead */
+}
+
+.case-study-hero .case-study-main-title {
+    margin-bottom: 0; /* Remove margin - using gap instead */
+}
+
+.case-study-hero .case-study-meta {
+    margin-top: 0; /* Remove margin - using gap instead */
+}
+
+.case-study-page {
+    padding-top: 0;
+}
+
+.case-study-label {
+    font-size: clamp(14px, 1.11vw, 16px);
+    font-weight: 400;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.75);
+    margin-bottom: 16px;
+    position: relative;
+    padding-bottom: 8px; /* Add space for the line */
+}
+
+/* Add subtle line under CASE STUDY label */
+.case-study-label::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* Center the line */
+    transform: translateX(-50%); /* Center the line */
+    width: 40px; /* Short, elegant line */
+    height: clamp(1px, 0.14vw, 1px); /* Subtle thickness */
+    background-color: rgba(0, 0, 0, 0.3); /* Softer than main text */
+}
+
+.case-study-main-title {
+    font-size: clamp(28px, 2.78vw, 40px);
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 40px;
+}
+
+.case-study-meta {
+    margin-top: 40px;
+}
+
+.pdf-link {
+    /* Match case-link styling */
+    color: #FF5D3C;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: clamp(16px, 1.39vw, 20px);
+    display: inline-block;
+    margin-top: 16px;
+    transition: color 0.3s ease;
+}
+
+.pdf-link:hover,
+.pdf-link:focus {
+    /* Match case-link hover styling */
+    color: #000000;
+    text-decoration: underline;
+}
+
+/* Hide the PDF icon */
+.pdf-link svg {
+    display: none;
+}
+
+/* Apply height constraint only on larger screens */
+@media (min-height: 800px) and (min-width: 1024px) {
+    .hero,
+    .case-study-hero {
+        max-height: 90vh;
+        overflow-y: hidden;
+    }
+}
+
+/* Case Studies Section */
+.case-studies {
+    padding: 56px 0; /* Increased from 40px for better separation from hero */
+}
+
+.case-study-cards {
+    display: grid;
+    gap: 40px; /* Reduced from 56px to 40px for tighter spacing between cards */
+    margin-bottom: 0; /* Removed margin-bottom since no divider follows */
+}
+
+/* Updated Case Study Cards with Smooth Hover Animations */
+.case-study-card {
+    background-color: #FBF9F5;
+    overflow: hidden;
+    position: relative;
+    /* Remove height constraint - applied only for large screens */
+    max-height: none;
+    
+    /* Default state - no border */
+    box-shadow: 0 0 0 0px transparent;
+    
+    /* Smooth transition matching button animation */
+    transition: all 0.3s ease;
+}
+
+.case-study-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    transition: opacity 0.3s ease; /* Matches the main transition timing */
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.case-study-card[data-gradient="peach-blue"]::before {
+    /* Diagonal gradient with color-picked values from Figma */
+    background: linear-gradient(135deg, #FBE1DD 0%, #9FBFDE 100%);
+}
+
+.case-study-card[data-gradient="pink-coral"]::before {
+    /* Diagonal gradient with color-picked values from Figma */
+    background: linear-gradient(135deg, #FEC9DE 0%, #FCE3EB 100%);
+}
+
+.case-study-card:hover::before,
+.case-study-card:focus-within::before {
+    opacity: 1;
+}
+
+.case-study-card:hover,
+.case-study-card:focus-within {
+    transform: translateY(-4px);
+    /* Hover state - 5px outside border using box-shadow */
+    box-shadow: 0 0 0 5px #000000, 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card-link {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    /* Remove height constraint - applied only for large screens */
+    min-height: auto;
+}
+
+/* Second case study card - Text left, Image right */
+.case-study-card:nth-child(2) .card-content {
+    order: 1;
+}
+
+.case-study-card:nth-child(2) .card-image {
+    order: 2;
+}
+
+.card-image {
+    padding: 0;
+    overflow: hidden; /* Ensure image overflow is hidden */
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* Remove height constraints - applied only for large screens */
+    min-height: auto;
+    max-height: none;
+    /* Remove any gaps around images */
+    line-height: 0;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 88px; /* Increased from 40px to 88px */
+    text-align: center; /* Center text content */
+    /* Allow content to expand by default - constraints applied only for large screens */
+    min-height: auto;
+    max-height: none;
+    overflow: visible; /* Allow content to expand */
+}
+
+/* About Section */
+.about {
+    padding: 32px 0; /* Reduced from 40px to 32px for tighter spacing between sections */
+}
+
+.about-cards {
+    display: grid;
+    gap: 40px; /* Reduced from 56px to 40px for tighter spacing between cards */
+}
+
+.standard-card {
+    background-color: #FBF9F5;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: stretch;
+}
+
+/* Second about card - Text left, Image right */
+.about-cards .standard-card:nth-child(2) .card-content {
+    order: 1;
+}
+
+.about-cards .standard-card:nth-child(2) .card-image {
+    order: 2;
+}
+
+.standard-card .card-image {
+    padding: 0;
+}
+
+.standard-card .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Special handling for about me profile image - show in full without cropping */
+.about-cards .standard-card:first-child .card-image img {
+    object-fit: contain; /* Show full image without cropping */
+    object-position: center; /* Center the image within container */
+    background-color: #FBF9F5; /* Match card background in case of letterboxing */
+}
+
+/* Make profile image more prominent on mobile screens */
+@media (max-width: 768px) {
+    .about-cards .standard-card:first-child .card-image {
+        padding-top: 32px; /* Add top spacing to balance with bottom spacing */
+    }
+    
+    .about-cards .standard-card:first-child .card-image img {
+        transform: scale(1.25); /* Scale up by 25% on mobile for better presence */
+    }
+}
+
+@media (max-width: 480px) {
+    .about-cards .standard-card:first-child .card-image {
+        padding-top: 24px; /* Proportional top spacing for small mobile */
+    }
+    
+    .about-cards .standard-card:first-child .card-image img {
+        transform: scale(1.35); /* Even larger on small mobile where white space is most noticeable */
+    }
+}
+
+.standard-card .card-content {
+    padding: 60px 88px; /* Increased from 40px to 88px */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left; /* Left-aligned text like hero cards */
+}
+
+/* Case Study Content */
+.case-study-content {
+    padding: 40px 0 0; /* Reduced from 60px to 40px for tighter connection to hero */
+    background-color: #F6F3EF; /* Main page background */
+}
+
+.case-study-content .container {
+    /* Match hero card width and center properly */
+    max-width: 1440px; /* Same as hero cards */
+    margin: 0 auto; /* Center the content */
+    padding: 60px 88px 80px; /* Match hero card padding (88px sides) + bottom for button */
+    background-color: #FBF9F5; /* Content background */
+}
+
+.content-section {
+    margin-bottom: 48px; /* Reduced from 64px to 48px for tighter spacing between sections */
+    max-width: 900px; /* REDUCED from 1100px to 900px for better readability */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left; /* LEFT ALIGN TEXT for case study content sections */
+}
+
+.content-section:last-child {
+    margin-bottom: 0; /* Remove bottom margin from last section */
+}
+
+.content-section-title {
+    font-size: clamp(20px, 1.67vw, 24px);
+    font-weight: 700;
+    font-style: italic;
+    text-transform: uppercase;
+    margin-bottom: 24px; /* Reduced from 32px to 24px for tighter spacing */
+    line-height: 1.2;
+    position: relative;
+    padding-bottom: 16px;
+}
+
+.content-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: clamp(1px, 0.14vw, 2px);
+    background-color: #000000;
+}
+
+.content-image {
+    margin: 32px 0; /* Reduced from 40px to 32px for tighter spacing around images */
+    /* Images will scale to fit within the 900px max width */
+}
+
+.content-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.focus-text {
+    /* DEFAULT: Case study 1 challenge gradient */
+    background: linear-gradient(135deg, #FBE1DD 0%, #9FBFDE 100%);
+    padding: 80px 40px; /* INCREASED PADDING from 60px to 80px vertically for larger background */
+    text-align: center;
+    margin: 32px 0; /* Back to standard margins - no auto centering needed */
+    cursor: pointer; /* INDICATE interactivity */
+    transition: all 0.3s ease; /* Smooth transitions */
+    /* Remove max-width from container - let background extend full width */
+}
+
+/* Default hover effect for case study 1 - INCREASED SPECIFICITY */
+.case-study-page .focus-text:hover {
+    transform: scale(1.02);
+    /* MORE NOTICEABLE darkening for case study 1 - darken by ~25% */
+    background: linear-gradient(135deg, #E8C0B8 0%, #7A9BC4 100%);
+}
+
+/* Fallback hover for non-case-study pages (if any) */
+.focus-text:hover {
+    transform: scale(1.02);
+    background: linear-gradient(135deg, #E8C0B8 0%, #7A9BC4 100%);
+}
+
+/* ADDED: Case study 2 specific challenge quote styling */
+.case-study-page .focus-text {
+    /* DEFAULT: Case study 1 challenge gradient */
+    background: linear-gradient(135deg, #FBE1DD 0%, #9FBFDE 100%);
+}
+
+/* Override ONLY for case study 2 pages - both normal and hover states */
+body:has(.case-study-hero [src*="cs2-cover"]) .focus-text {
+    /* Case study 2 challenge gradient */
+    background: linear-gradient(135deg, #FEC9DE 0%, #FF8C83 100%);
+}
+
+/* Case study 2 hover effect - needs even higher specificity to beat .case-study-page .focus-text:hover */
+body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover {
+    transform: scale(1.02);
+    /* Darken the case study 2 gradient by ~20% */
+    background: linear-gradient(135deg, #FE9BBB 0%, #E6786F 100%);
+}
+
+.focus-text p {
+    font-size: clamp(24px, 2.22vw, 32px);
+    font-weight: 400;
+    margin: 0;
+    color: #000000;
+    line-height: 1.3;
+    max-width: 600px; /* Constrain width for better readability above mobile */
+    margin: 0 auto; /* Center the text block */
+}
+
+/* Remove max-width constraint on small mobile for full utilization of space */
+@media (max-width: 480px) {
+    .focus-text p {
+        max-width: none; /* Use full width on small screens */
+    }
+}
+
+/* Next Case Study */
+.next-case-study {
+    background-color: #F6F3EF; /* CHANGED back to main page background */
+    padding: 0; /* REMOVED padding for tighter spacing */
+    margin-top: 48px; /* REDUCED from 80px to 48px for much tighter connection to content */
+}
+
+.next-case-study .container {
+    max-width: 600px; /* FURTHER REDUCED from 800px to always hug content closely */
+    margin: 0 auto;
+    padding: 40px 32px; /* REDUCED internal padding from 60px 40px to 40px 32px for tighter background */
+    background-color: #FBF9F5; /* MOVE background to container level for tighter fit */
+}
+
+.next-case-label {
+    font-size: clamp(14px, 1.11vw, 16px);
+    font-weight: 400;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.75);
+    margin-bottom: 32px;
+    text-align: center; /* CENTER ALIGN LABEL */
+    position: relative;
+    padding-bottom: 8px; /* Add space for the line */
+}
+
+/* Add subtle line under NEXT/PREVIOUS CASE STUDY label */
+.next-case-label::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* Center the line */
+    transform: translateX(-50%); /* Center the line */
+    width: 40px; /* Short, elegant line */
+    height: clamp(1px, 0.14vw, 1px); /* Subtle thickness */
+    background-color: rgba(0, 0, 0, 0.3); /* Softer than main text */
+}
+
+.next-case-content {
+    display: grid;
+    grid-template-columns: 120px 1fr; /* REDUCED image width from 150px to 120px for more compact layout */
+    gap: 24px; /* REDUCED gap from 32px to 24px for tighter content */
+    align-items: center;
+    max-width: 480px; /* REDUCED from 600px to hug content even more closely */
+    margin: 0 auto; /* CENTER THE CONTENT BLOCK */
+}
+
+.next-case-image img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+}
+
+.next-case-text .case-study-title {
+    font-size: clamp(20px, 1.67vw, 24px);
+    margin-bottom: 4px;
+}
+
+.next-case-text .case-study-subtitle {
+    font-size: clamp(20px, 1.67vw, 24px);
+    margin-bottom: 16px;
+}
+
+.case-link {
+    color: #FF5D3C;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: clamp(16px, 1.39vw, 20px);
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+.case-link:hover,
+.case-link:focus {
+    color: #000000;
+    text-decoration: underline;
+}
+
+/* Buttons - Updated with subtle growing hover effect */
+.cta-button {
+    display: inline-block;
+    width: fit-content;
+    background-color: #FBF9F5;
+    color: #000000;
+    text-decoration: none;
+    padding: 16px 32px;
+    font-weight: 700;
+    font-size: clamp(16px, 1.39vw, 20px);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 24px;
+    position: relative;
+    
+    /* Default state - 3px visible border at 1440px, scaling down on smaller screens */
+    border: clamp(2px, 0.21vw, 3px) solid #000000;
+    box-shadow: none;
+    
+    /* Smooth transition for the growth effect */
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover,
+.cta-button:focus {
+    /* UPDATED: Dark-peach-fade gradient for button hover */
+    background: linear-gradient(135deg, #FFC9C7 0%, #FCDEDA 100%);
+    color: #000000;
+    
+    /* Hover state - grow to 5px total border thickness */
+    border: clamp(2px, 0.21vw, 3px) solid #000000;
+    box-shadow: 0 0 0 clamp(1px, 0.14vw, 2px) #000000;
+    
+    /* Optional: Very subtle scale for enhanced effect */
+    transform: scale(1.02);
+}
+
+/* Case study specific button centering */
+.case-study-content .cta-button {
+    display: block;
+    margin: 24px auto 0 auto; /* Center the button in case study pages */
+}
+
+/* Footer */
+.footer {
+    background-color: #FBE1DD;
+    padding: 40px 0;
+    margin-top: 80px; /* Reduced from 120px for tighter separation from sections */
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.footer-contact,
+.footer-copyright {
+    font-size: clamp(14px, 1.11vw, 16px);
+    line-height: 1.6;
+}
+
+.footer-contact a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.footer-contact a:hover,
+.footer-contact a:focus {
+    text-decoration: underline;
+}
+
+.footer-copyright {
+    text-align: right;
+}
+
+/* Responsive Design */
+
+/* Large Desktop - Apply height constraints for optimal viewing on very large screens */
+@media (min-width: 1440px) {
+    .case-study-card {
+        max-height: 600px; /* Preserve 600px constraint for ease of viewing on large screens */
+    }
+    
+    .card-content {
+        min-height: 400px;
+        max-height: 600px;
+        overflow: hidden; /* Apply constraint only on large screens where it improves UX */
+    }
+    
+    .card-link {
+        min-height: 400px; /* Minimum height for proper proportions on large screens */
+    }
+    
+    .card-image img {
+        min-height: 400px; /* Match minimum height */
+        max-height: 600px; /* Match maximum height */
+    }
+}
+
+@media (max-width: 1200px) {
+    /* Remove height constraints that cause clipping while keeping layout structure */
+    .case-study-card {
+        max-height: none; /* Allow cards to expand to fit content */
+    }
+    
+    .card-link {
+        min-height: auto; /* Remove minimum height constraint */
+    }
+    
+    .card-image img {
+        min-height: 350px; /* Keep reasonable minimum for image */
+        max-height: none; /* Allow image to scale naturally */
+    }
+    
+    .card-content {
+        min-height: auto; /* Remove minimum height constraint */
+        max-height: none; /* Remove maximum height constraint */
+        overflow: visible; /* Allow content to expand */
+        padding: 50px 75px; /* Proportionally reduced from 88px */
+    }
+    
+    .hero-text {
+        padding: 50px 75px; /* Proportionally reduced from 88px */
+    }
+    
+    .standard-card .card-content {
+        min-height: auto; /* Remove minimum height constraint */
+        max-height: none; /* Remove maximum height constraint */
+        overflow: visible; /* Allow content to expand */
+        padding: 50px 75px; /* Proportionally reduced from 88px */
+    }
+    
+    /* Case study specific padding adjustments */
+    .case-study-hero .hero-text {
+        padding: 50px 75px; /* Proportionally reduced from 88px */
+    }
+    
+    .focus-text {
+        padding: 60px 40px; /* Proportionally reduced padding from 80px */
+    }
+
+    /* Case study content responsive adjustments */
+    .case-study-content .container {
+        padding: 50px 75px 70px; /* Match hero card padding proportions */
+        margin-left: 40px; /* Maintain consistent margins */
+        margin-right: 40px; /* Maintain consistent margins */
+    }
+}
+
+@media (max-width: 900px) {
+    /* Continue removing height constraints for tablet sizes */
+    .case-study-card {
+        max-height: none; /* Allow cards to expand to fit content */
+    }
+    
+    .card-link {
+        min-height: auto; /* Remove minimum height constraint */
+    }
+    
+    .card-image img {
+        min-height: 300px; /* Keep reasonable minimum for image */
+        max-height: none; /* Allow image to scale naturally */
+    }
+    
+    .card-content {
+        min-height: auto; /* Remove minimum height constraint */
+        max-height: none; /* Remove maximum height constraint */
+        overflow: visible; /* Allow content to expand */
+        padding: 40px 60px; /* Proportionally reduced from 88px */
+    }
+    
+    .hero-text {
+        padding: 40px 60px; /* Proportionally reduced from 88px */
+    }
+    
+    .standard-card .card-content {
+        min-height: auto; /* Remove minimum height constraint */
+        max-height: none; /* Remove maximum height constraint */
+        overflow: visible; /* Allow content to expand */
+        padding: 40px 60px; /* Proportionally reduced from 88px */
+    }
+    
+    /* Case study specific padding adjustments */
+    .case-study-hero .hero-text {
+        padding: 40px 60px; /* Proportionally reduced from 88px */
+    }
+    
+    .focus-text {
+        padding: 50px 32px; /* Proportionally reduced padding from 80px */
+    }
+
+    /* Case study content responsive adjustments */
+    .case-study-content .container {
+        padding: 40px 60px 60px; /* Match hero card padding proportions */
+        margin-left: 40px; /* Maintain consistent margins */
+        margin-right: 40px; /* Maintain consistent margins */
+    }
+    
+    /* Responsive spacing adjustments */
+    .section-title {
+        margin-bottom: 32px; /* Reduced spacing on smaller screens */
+    }
+    
+    .case-study-cards,
+    .about-cards {
+        gap: 32px; /* Reduced spacing between cards on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile Navigation */
+    .desktop-nav {
+        display: none;
+    }
+
+    .mobile-nav-toggle {
+        display: flex;
+    }
+
+    .mobile-nav.show {
+        display: block;
+    }
+
+    /* Hero adjustments */
+    .hero {
+        padding: 100px 0 40px; /* Maintain tighter bottom spacing on mobile */
+        max-height: none !important; /* Always remove height constraint on mobile */
+        overflow-y: visible !important; /* Always allow content to expand on mobile */
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 0;
+        text-align: left; /* CHANGED: Use left alignment like desktop for consistency */
+        min-height: auto; /* REMOVE min-height constraint on mobile */
+    }
+
+    .hero-content .hero-image {
+        order: -1;
+    }
+
+    .hero-text {
+        padding: 40px 16px; /* Updated to match new mobile margin system */
+        gap: 20px; /* Mobile spacing */
+    }
+
+    /* Case Study Hero */
+    .case-study-hero {
+        padding: 80px 0 20px; /* REDUCED bottom padding further on mobile */
+        max-height: none !important; /* Always remove height constraint on mobile */
+        overflow-y: visible !important; /* Always allow content to expand on mobile */
+    }
+
+    .case-study-hero .hero-content {
+        grid-template-columns: 1fr;
+        gap: 0; /* Keep no gap on mobile too */
+        /* FIXED: Use consistent container system instead of custom margins */
+        max-width: 1600px; /* Match container max-width */
+        margin: 0 auto; /* Center the content */
+        /* Container padding will be applied by the section's container class */
+        min-height: auto; /* REMOVE min-height constraint on mobile */
+    }
+
+    .case-study-hero .hero-text {
+        padding: 40px 16px; /* Updated to match new mobile margin system */
+        text-align: center; /* MAINTAIN CENTER ALIGNMENT on mobile */
+        gap: clamp(24px, 2.8vw, 32px); /* Equal spacing between three main blocks on mobile */
+    }
+    
+    .case-study-hero .case-study-meta {
+        gap: clamp(6px, 0.7vw, 10px); /* Tighter MY ROLE section grouping on mobile */
+    }
+
+    .case-study-hero .hero-image {
+        order: -1; /* Image first on mobile */
+    }
+
+    .case-study-main-title {
+        font-size: clamp(24px, 2.22vw, 32px);
+        margin-bottom: 32px;
+    }
+
+    .case-study-meta {
+        margin-top: 32px;
+    }
+
+    /* Case study content adjustments */
+    .case-study-content {
+        padding: 32px 0 0; /* Reduced from 40px to 32px for mobile */
+    }
+
+    .case-study-content .container {
+        padding: 40px 16px 60px; /* Updated to match new mobile margin system */
+        margin-left: 16px; /* Updated to match new mobile margin system */
+        margin-right: 16px; /* Updated to match new mobile margin system */
+        max-width: none; /* Remove max-width constraint on mobile */
+        background-color: #FBF9F5; /* MAINTAIN BACKGROUND on mobile */
+    }
+
+    .content-section {
+        max-width: none; /* Remove content width constraint on mobile */
+        margin-bottom: 32px; /* Reduced from 48px to 32px on mobile */
+        text-align: left; /* MAINTAIN LEFT ALIGNMENT on mobile */
+    }
+
+    .content-image {
+        margin: 24px 0; /* Reduced from 32px to 24px on mobile */
+    }
+
+    .focus-text {
+        padding: 40px 20px; /* Increased from 40px 16px for better mobile breathing room */
+        margin: 24px 0; /* Back to standard margins */
+    }
+
+    /* Next case study mobile */
+    .next-case-study {
+        margin-top: 40px; /* REDUCED from 60px on mobile for tighter spacing */
+        padding: 0; /* REMOVE padding from section level on mobile */
+        background-color: #F6F3EF; /* MAINTAIN main page background */
+    }
+
+    .next-case-study .container {
+        padding: 32px 16px; /* Updated to match new mobile margin system */
+        margin: 0 auto; /* CHANGED: Keep auto centering instead of removing margins */
+        max-width: 90%; /* CHANGED: Use percentage-based width to respect screen margins */
+        background-color: #FBF9F5; /* MAINTAIN background on container */
+    }
+
+    .next-case-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+        max-width: 85%; /* CHANGED: Use percentage to work well within the container */
+        margin: 0 auto; /* CHANGED: Keep auto centering on mobile */
+    }
+
+    .next-case-label {
+        text-align: center; /* MAINTAIN CENTER ALIGNMENT on mobile */
+    }
+
+    /* MOBILE FIX: Remove height constraints that cause clipping */
+    .case-study-card {
+        max-height: none; /* Remove height constraint on mobile */
+    }
+    
+    .card-link {
+        min-height: auto; /* Remove minimum height constraint */
+    }
+    
+    .card-image img {
+        min-height: 250px; /* Keep reasonable minimum for mobile */
+        max-height: none; /* Remove maximum height constraint */
+        aspect-ratio: 16/9; /* Maintain consistent aspect ratio on mobile */
+    }
+
+    .card-content {
+        min-height: auto; /* Remove minimum height constraint */
+        max-height: none; /* Remove maximum height constraint */
+        overflow: visible; /* Allow content to expand */
+        padding: 40px 24px; /* Mobile padding */
+        text-align: center; /* Keep center alignment on mobile */
+    }
+
+    /* Card layouts */
+    .card-link,
+    .standard-card {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .case-study-card .card-image {
+        order: -1;
+    }
+
+    /* Reset order on mobile for all cards */
+    .case-study-card:nth-child(2) .card-content,
+    .about-cards .standard-card:nth-child(2) .card-content {
+        order: 0;
+    }
+
+    .case-study-card:nth-child(2) .card-image,
+    .about-cards .standard-card:nth-child(2) .card-image {
+        order: -1;
+    }
+    
+    .standard-card .card-content {
+        padding: 40px 24px; /* Mobile padding */
+        text-align: left; /* Keep left alignment on mobile for about cards */
+        min-height: auto; /* Remove minimum height constraint */
+        max-height: none; /* Remove maximum height constraint */
+        overflow: visible; /* Allow content to expand */
+    }
+
+    /* Mobile spacing adjustments */
+    .section-title {
+        margin-bottom: 24px; /* Further reduced on mobile */
+        margin-left: 0; /* Remove custom margins - let container handle spacing */
+        margin-right: 0; /* Remove custom margins - let container handle spacing */
+    }
+    
+    .case-study-cards,
+    .about-cards {
+        gap: 24px; /* Tighter spacing on mobile */
+    }
+
+    /* Next case study */
+    .next-case-content {
+        grid-template-columns: 1fr;
+        gap: 24px; /* Reduced gap on mobile */
+        text-align: center;
+    }
+
+    /* Footer */
+    .footer {
+        margin-top: 60px; /* Reduced from 80px on mobile */
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+    }
+
+    .footer-copyright {
+        text-align: center;
+    }
+
+    /* Navigation positioning - updated to match new responsive system */
+    .case-study-nav {
+        top: 16px;
+        /* left positioning now handled in main .case-study-nav section */
+    }
+
+    .back-home {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 80px 0 32px; /* Further reduced bottom spacing for small mobile */
+        max-height: none !important; /* Ensure no height constraint on small mobile */
+        overflow-y: visible !important; /* Ensure content can expand */
+    }
+
+    .hero-text {
+        padding: 32px 20px; /* Smaller mobile padding */
+    }
+
+    .case-study-card .card-content {
+        padding: 32px 20px; /* Smaller mobile padding */
+        min-height: auto; /* Ensure no height constraints */
+        max-height: none;
+        overflow: visible;
+    }
+    
+    .standard-card .card-content {
+        padding: 32px 20px; /* Smaller mobile padding */
+        min-height: auto; /* Ensure no height constraints */
+        max-height: none;
+        overflow: visible;
+    }
+
+    /* Case study specific small mobile adjustments */
+    .case-study-hero {
+        padding: 80px 0 16px; /* Further reduced bottom spacing */
+        max-height: none !important; /* Ensure no height constraint on small mobile */
+        overflow-y: visible !important; /* Ensure content can expand */
+    }
+
+    .case-study-hero .hero-text {
+        padding: 32px 20px; /* Smaller mobile padding */
+        text-align: center; /* MAINTAIN CENTER ALIGNMENT on small mobile */
+    }
+
+    .case-study-content {
+        padding: 24px 0 0; /* Further reduced for small mobile */
+    }
+
+    .case-study-content .container {
+        padding: 32px 12px 48px; /* Updated to match new small mobile margin system */
+        margin-left: 12px; /* Updated to match new small mobile margin system */
+        margin-right: 12px; /* Updated to match new small mobile margin system */
+        max-width: none; /* Remove max-width constraint on small mobile */
+        background-color: #FBF9F5; /* MAINTAIN BACKGROUND on small mobile */
+    }
+
+    .focus-text {
+        padding: 40px 20px; /* Increased from 32px 12px for more breathing room on small mobile */
+        margin: 20px 0; /* Further reduced margins */
+    }
+
+    .content-section {
+        margin-bottom: 24px; /* Further reduced on small mobile */
+        text-align: left; /* MAINTAIN LEFT ALIGNMENT on small mobile */
+    }
+
+    .content-image {
+        margin: 20px 0; /* Further reduced margins */
+    }
+
+    .next-case-study {
+        padding: 0; /* REMOVE padding from section level on small mobile */
+        margin-top: 32px; /* FURTHER REDUCED from 40px on small mobile for tighter spacing */
+        background-color: #F6F3EF; /* MAINTAIN main page background */
+    }
+
+    .next-case-study .container {
+        padding: 24px 12px; /* Updated to match new small mobile margin system */
+        margin: 0 auto; /* CHANGED: Keep auto centering for consistency */
+        max-width: 90%; /* CHANGED: Use percentage-based width to respect screen margins */
+        background-color: #FBF9F5; /* MAINTAIN background on container */
+    }
+
+    .next-case-label {
+        text-align: center; /* MAINTAIN CENTER ALIGNMENT on small mobile */
+    }
+
+    /* Small mobile spacing */
+    .section-title {
+        margin-bottom: 20px; /* Further reduced */
+        margin-left: 0; /* Remove custom margins - let container handle spacing */
+        margin-right: 0; /* Remove custom margins - let container handle spacing */
+    }
+    
+    .case-study-cards,
+    .about-cards {
+        gap: 20px; /* Further reduced on small mobile */
+    }
+
+    /* Footer */
+    .footer {
+        margin-top: 40px; /* Further reduced on small mobile */
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .case-study-card::before {
+        opacity: 0 !important;
+    }
+    
+    .focus-text {
+        background: #ffffff !important;
+        border: 2px solid #000000;
+    }
+}
+
+/* Print styles */
+@media print {
+    .main-nav,
+    .case-study-nav,
+    .mobile-nav-toggle {
+        display: none;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .hero {
+        padding-top: 0;
+    }
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Platform Redesign - Fiona Cowie</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>✨</text></svg>">
+    <meta name="description" content="Reinventing Good-Loop's carbon measurement platform - a complete product redesign. A case study by product designer Fiona Cowie.">
+    
+    <!-- Social sharing meta tags -->
+    <meta property="og:title" content="Case Study: Platform Redesign - Fiona Cowie">
+    <meta property="og:description" content="Reinventing Good-Loop's carbon measurement platform - a complete product redesign. A case study by product designer Fiona Cowie.">
+    <meta property="og:image" content="https://yoursite.com/images/cs2-cover-lg.png">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Case Study: Platform Redesign">
+    <meta name="twitter:description" content="Reinventing Good-Loop's carbon measurement platform - a complete product redesign.">
+    <meta name="twitter:image" content="https://yoursite.com/images/cs2-cover-lg.png">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Set initial page position for transitions BEFORE page renders -->
+    <script>
+        (function() {
+            const transitionDirection = sessionStorage.getItem('transitionDirection');
+            if (transitionDirection === 'to-case-study') {
+                document.documentElement.style.setProperty('--initial-transform', 'translateX(100%)');
+                document.documentElement.style.setProperty('--initial-opacity', '0');
+                document.documentElement.style.setProperty('--initial-visibility', 'hidden');
+            }
+        })();
+    </script>
+</head>
+<body class="case-study-page">
+    <!-- Skip to main content link for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Case Study Navigation -->
+    <nav class="case-study-nav" aria-label="Case study navigation">
+        <div class="nav-container">
+            <a href="index.html" class="back-home" aria-label="Back to home page">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <!-- Case Study Hero -->
+        <section class="case-study-hero" aria-labelledby="case-hero-title">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-image">
+                        <img src="images/cs2-cover-lg.png" alt="Collage illustration in black and pink tones showing bold branding elements and a paint roller revealing a list of complex numbers.">
+                    </div>
+                    <div class="hero-text">
+                        <p class="case-study-label">CASE STUDY</p>
+                        <h1 id="case-hero-title" class="case-study-main-title">
+                            Reinventing Good-Loop's carbon measurement platform:
+                            <br><strong>a complete product redesign</strong>
+                        </h1>
+                        
+                        <div class="case-study-meta">
+                            <p class="meta-label">MY ROLE</p>
+                            <p class="meta-content"><strong>In-house product designer</strong></p>
+                            <p class="meta-content">User research | UX | UI | Stakeholder collaboration</p>
+                            
+                            <a href="pdf/fionacowie_productdesigner_casestudy2.pdf" class="pdf-link" target="_blank" rel="noopener noreferrer">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2"/>
+                                    <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                Read the full case study (PDF) →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study Content -->
+        <section class="case-study-content">
+            <div class="container">
+                <!-- Bitesize Summary -->
+                <article class="content-section">
+                    <h2 class="content-section-title">BITESIZE SUMMARY</h2>
+                    <p class="body-text"><strong>A redesigned carbon monitoring dashboard</strong> for advertisers, built from the ground up to align with Good-Loop's high-impact company rebrand and a new, industry-wide emissions methodology.</p>
+                    
+                    <div class="focus-text">
+                        <p>My challenge: translating complex data and bold branding into a focused dashboard</p>
+                    </div>
+                </article>
+
+                <!-- Process Highlights -->
+                <article class="content-section">
+                    <h2 class="content-section-title">PROCESS HIGHLIGHTS</h2>
+                    
+                    <div class="content-image">
+                        <img src="images/cs2-process.png" alt="Shows dashboard design iteration. Left shows early version with bright red data visualisations and a user quote reading  'this hurts my eyes' and right shows refined interface plus pink and blue colour swatches and a user quote reading 'So easy to follow with the colour-coded sections!'" loading="lazy">
+                    </div>
+                    
+                    <p class="body-text">User interviews revealed a shared need: <strong>the design had to be educational yet easy to grasp</strong>. Iteration and testing honed a visual language that used brand colours to guide users through complex data.</p>
+                    
+                    <div class="personal-note">
+                        <img src="images/pen-tool-icon.svg" alt="">
+                        <p><em>To support accessibility, I included text and icons to ensure that understanding of data was not reliant on colour alone</em></p>
+                    </div>
+                </article>
+
+                <!-- Outcome -->
+                <article class="content-section">
+                    <h2 class="content-section-title">OUTCOME</h2>
+                    
+                    <div class="content-image">
+                        <img src="images/cs2-outcome.png" alt="Collection of overlapping dashboard interface screens showing various views and states of the final design system. The dashboard's background colour palette is pale grey, off-white and soft pink. Data is visualised in blue and pink." loading="lazy">
+                    </div>
+                    
+                    <p class="body-text">The redesigned dashboard brings brand and data together, delivering clarity for two distinct types of users: Agency Decision-makers needing a big-picture view, and Campaign Analysts diving into the details.</p>
+                    
+                    <blockquote class="pull-quote">
+                        <p>Easy to use, with clearly presented data and a design that feels modern</p>
+                        <cite>— CARLA, CAMPAIGN ANALYST</cite>
+                    </blockquote>
+                    
+                    <a href="pdf/fionacowie_productdesigner_casestudy2.pdf" class="cta-button" target="_blank" rel="noopener noreferrer">READ THE FULL CASE STUDY (PDF) →</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Previous Case Study - NOW OUTSIDE the case-study-content section -->
+        <article class="next-case-study">
+            <div class="container">
+                <h2 class="next-case-label">PREVIOUS CASE STUDY</h2>
+                <div class="next-case-content">
+                    <div class="next-case-image">
+                        <img src="images/cs1-cover-s.png" alt="Illustration of planet Earth in blue and coral tones with digital advertising icons reading 'Shop!', 'Sale' and 'Buy now!' floating around it." loading="lazy">
+                    </div>
+                    <div class="next-case-text">
+                        <h3 class="case-study-title">Designing Good-Loop's first carbon measurement platform:</h3>
+                        <p class="case-study-subtitle"><strong>from what if to action</strong></p>
+                        <a href="case-study-1.html" class="case-link">View case study →</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-contact">
+                    <strong>Keep in touch</strong><br>
+                    <a href="mailto:fionajcowie@gmail.com">fionajcowie@gmail.com</a>
+                </p>
+                <p class="footer-copyright">
+                    Design, content and illustrations<br>
+                    © Fiona Cowie 2025
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
