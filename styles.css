@@ -1620,7 +1620,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
     
     .case-study-cards,
     .about-cards {
-        gap: 24px; /* Tighter spacing on mobile */
+        gap: 32px; /* Tighter spacing on mobile */
     }
 
     /* Next case study */
@@ -1746,7 +1746,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
     
     .case-study-cards,
     .about-cards {
-        gap: 20px; /* Further reduced on small mobile */
+        gap: 24px; /* Further reduced on small mobile */
     }
 
     /* Footer */
