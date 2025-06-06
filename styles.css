@@ -1419,6 +1419,15 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
 }
 
 @media (max-width: 768px) {
+    .main-nav {
+        padding: 16px 0; /* Decrease from 24px to 16px */
+        height: 64px; /* Decrease from 88px to 64px */
+    }
+
+    .mobile-nav {
+        top: 64px; /* Adjust mobile nav dropdown position */
+    }
+
     /* Mobile Navigation */
     .desktop-nav {
         display: none;
@@ -1434,7 +1443,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
 
     /* Hero adjustments */
     .hero {
-        padding: 100px 0 40px; /* Maintain tighter bottom spacing on mobile */
+        padding: 88px 0 40px; /* Adjust top padding for new nav height */
         max-height: none !important; /* Always remove height constraint on mobile */
         overflow-y: visible !important; /* Always allow content to expand on mobile */
     }
@@ -1457,7 +1466,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
 
     /* Case Study Hero */
     .case-study-hero {
-        padding: 80px 0 20px; /* REDUCED bottom padding further on mobile */
+        padding: 88px 0 32px; /* Adjust top padding + increase bottom padding */
         max-height: none !important; /* Always remove height constraint on mobile */
         overflow-y: visible !important; /* Always allow content to expand on mobile */
     }
@@ -1519,7 +1528,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
     }
 
     .focus-text {
-        padding: 40px 20px; /* Increased from 40px 16px for better mobile breathing room */
+        padding: 60px 32px; /* Increased from 40px 16px for better mobile breathing room */
         margin: 24px 0; /* Back to standard margins */
     }
 
@@ -1650,7 +1659,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
 
 @media (max-width: 480px) {
     .hero {
-        padding: 80px 0 32px; /* Further reduced bottom spacing for small mobile */
+        padding: 72px 0 32px; /* Adjust for smaller nav height */
         max-height: none !important; /* Ensure no height constraint on small mobile */
         overflow-y: visible !important; /* Ensure content can expand */
     }
@@ -1675,7 +1684,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
 
     /* Case study specific small mobile adjustments */
     .case-study-hero {
-        padding: 80px 0 16px; /* Further reduced bottom spacing */
+        padding: 72px 0 40px; /* Adjust for smaller nav + increase bottom */
         max-height: none !important; /* Ensure no height constraint on small mobile */
         overflow-y: visible !important; /* Ensure content can expand */
     }
@@ -1698,7 +1707,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
     }
 
     .focus-text {
-        padding: 40px 20px; /* Increased from 32px 12px for more breathing room on small mobile */
+        padding: 56px 20px; /* Increase from 40px to 56px vertically */
         margin: 20px 0; /* Further reduced margins */
     }
 
