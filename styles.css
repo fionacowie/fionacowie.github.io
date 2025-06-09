@@ -1194,7 +1194,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
 
 .case-link {
     color: #000000;
-    text-decoration: underline;
+    text-decoration: none;
     font-weight: 700;
     font-size: clamp(16px, 1.39vw, 20px);
     display: inline-block;
