@@ -1280,6 +1280,16 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
     text-decoration: underline;
 }
 
+.footer-contact svg {
+    transition: color 0.3s ease;
+    margin-left: 4px;
+}
+
+.footer-contact a:hover svg,
+.footer-contact a:focus svg {
+    color: #FF5D3C;
+}
+
 .footer-copyright {
     text-align: right;
 }
