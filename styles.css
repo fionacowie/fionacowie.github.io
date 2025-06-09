@@ -558,7 +558,7 @@ body:has(.case-study-hero [src*="cs2-cover"]) .pull-quote:hover {
 .mobile-nav .nav-link:hover,
 .mobile-nav .nav-link:focus,
 .mobile-nav .nav-link.active {
-    color: #FF5D3C;
+    color: #FF542E;
     font-weight: 700;
 }
 
@@ -796,7 +796,7 @@ body:has(.case-study-hero [src*="cs2-cover"]) .pull-quote:hover {
 
 .pdf-link {
     /* Match case-link styling */
-    color: #FF5D3C;
+    color: #FF542E;
     text-decoration: none;
     font-weight: 500;
     font-size: clamp(16px, 1.39vw, 20px);
@@ -1193,7 +1193,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
 }
 
 .case-link {
-    color: #FF5D3C;
+    color: #FF542E;
     text-decoration: none;
     font-weight: 500;
     font-size: clamp(16px, 1.39vw, 20px);
