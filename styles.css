@@ -1204,7 +1204,7 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
 .case-link:hover,
 .case-link:focus {
     color: #FF542E;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .next-case-content-link {
