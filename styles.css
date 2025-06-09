@@ -558,7 +558,7 @@ body:has(.case-study-hero [src*="cs2-cover"]) .pull-quote:hover {
 .mobile-nav .nav-link:hover,
 .mobile-nav .nav-link:focus,
 .mobile-nav .nav-link.active {
-    color: #FF542E;
+    color: #000000;
     font-weight: 700;
 }
 
@@ -796,9 +796,9 @@ body:has(.case-study-hero [src*="cs2-cover"]) .pull-quote:hover {
 
 .pdf-link {
     /* Match case-link styling */
-    color: #FF542E;
-    text-decoration: none;
-    font-weight: 500;
+    color: #000000;
+    text-decoration: underline;
+    font-weight: 700;
     font-size: clamp(16px, 1.39vw, 20px);
     display: inline-block;
     margin-top: 16px;
@@ -808,7 +808,7 @@ body:has(.case-study-hero [src*="cs2-cover"]) .pull-quote:hover {
 .pdf-link:hover,
 .pdf-link:focus {
     /* Match case-link hover styling */
-    color: #000000;
+    color: #FF542E;
     text-decoration: underline;
 }
 
@@ -1193,9 +1193,9 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
 }
 
 .case-link {
-    color: #FF542E;
-    text-decoration: none;
-    font-weight: 500;
+    color: #000000;
+    text-decoration: underline;
+    font-weight: 700;
     font-size: clamp(16px, 1.39vw, 20px);
     display: inline-block;
     transition: color 0.3s ease;
@@ -1203,8 +1203,27 @@ body.case-study-page:has(.case-study-hero [src*="cs2-cover"]) .focus-text:hover 
 
 .case-link:hover,
 .case-link:focus {
-    color: #000000;
+    color: #FF542E;
     text-decoration: underline;
+}
+
+.next-case-content-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+}
+
+.next-case-content-link .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px 32px;
+    background-color: #FBF9F5; /* This creates the visual card */
+}
+
+.next-case-content-link:hover,
+.next-case-content-link:focus {
+    transform: translateY(-2px);
 }
 
 /* Buttons - Updated with subtle growing hover effect */
