@@ -226,11 +226,12 @@ function scrollToElement(element) {
     // Special handling for contact section (which is inside about section)
     let targetPosition;
     if (element.id === 'contact') {
-        // For contact, scroll to the contact card itself with minimal buffer
-        targetPosition = element.offsetTop - navHeight - 8;
+        // FIXED: For contact, ensure we scroll far enough to trigger the scroll spy
+        // Account for the viewport-based threshold we use in scroll spy
+        const extraOffset = window.innerHeight * 0.3; // Match the scroll spy threshold
+        targetPosition = element.offsetTop - navHeight - 8 - extraOffset;
     } else {
         // For other sections, align section title bottom with nav bottom
-        // Reduced buffer from 20px to 8px for tighter alignment
         targetPosition = element.offsetTop - navHeight - 8;
     }
     
@@ -287,12 +288,22 @@ function initScrollSpy() {
             console.log(`Section ${section.id}:`, section.offsetTop);
         });
         
-        // SPECIAL CASE: Check if we're in the contact section first
+        // Check if we're on mobile (where we want contact to be separate)
+        const isMobile = window.innerWidth <= 768;
+        
+        // SPECIAL CASE: Check if we're in the contact section first (all screen sizes)
         const contactSection = document.querySelector('#contact');
-        if (contactSection && scrollPosition >= contactSection.offsetTop) {
-            currentSection = 'contact';
-            console.log('Found current section (contact special case):', currentSection);
-        } else {
+        if (contactSection) {
+            // FIXED: Adjust threshold for taller screens - if contact section is close to being in view
+            const contactThreshold = contactSection.offsetTop - (window.innerHeight * 0.3); // 30% of viewport height before contact section
+            if (scrollPosition >= contactThreshold) {
+                currentSection = 'contact';
+                console.log('Found current section (contact special case):', currentSection);
+            }
+        }
+        
+        // If we didn't find contact section, proceed with normal detection
+        if (!currentSection) {
             // FIXED: Find the most recently passed section by iterating in reverse order
             const sectionsArray = Array.from(sections).reverse();
             
@@ -325,6 +336,8 @@ function initScrollSpy() {
         allNavLinks.forEach(link => {
             link.classList.remove('active');
             link.removeAttribute('aria-current');
+            // ADDED: Force remove any stuck focus/hover states
+            link.blur();
         });
         
         // Set active state for the single current section
