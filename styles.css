@@ -518,6 +518,7 @@ body:has(.case-study-hero [src*="cs2-cover"]) .pull-quote:hover {
     transition: all 0.3s ease;
 }
 
+/* Mobile Navigation - SIMPLIFIED FIX */
 .mobile-nav {
     display: none;
     position: fixed;
@@ -525,7 +526,7 @@ body:has(.case-study-hero [src*="cs2-cover"]) .pull-quote:hover {
     left: 0;
     right: 0;
     background-color: #F6F3EF;
-    padding: 20px 16px; /* Updated to match mobile margin system */
+    padding: 20px 16px;
     list-style: none;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -534,50 +535,44 @@ body:has(.case-study-hero [src*="cs2-cover"]) .pull-quote:hover {
     margin-bottom: 16px;
 }
 
-/* Override desktop nav styling for mobile menu - ensure clean left alignment */
+/* SIMPLIFIED: Complete override of desktop nav styling for mobile menu */
 .mobile-nav .nav-link {
-    color: #000000; /* Override transparent color from desktop */
-    text-align: left; /* Ensure left alignment */
-    display: block; /* Full block display for touch targets */
-    font-weight: 400; /* Reset font weight */
-    font-size: clamp(16px, 1.39vw, 20px); /* Match desktop size */
+    /* Reset all desktop styles */
+    color: #000000 !important; /* Force override of transparent color */
+    text-align: left;
+    display: block;
+    font-weight: 400; /* Normal weight as default - NO !important */
+    font-size: clamp(16px, 1.39vw, 20px);
     text-decoration: none;
     transition: all 0.3s ease;
-    position: static; /* Override relative positioning from desktop */
-    transform: none; /* Remove any transforms */
+    position: static !important; /* Override relative positioning */
+    transform: none !important; /* Remove any transforms */
 }
 
-/* Remove desktop pseudo-elements for mobile */
+/* SIMPLIFIED: Completely remove desktop pseudo-elements for mobile */
 .mobile-nav .nav-link::before,
 .mobile-nav .nav-link::after {
-    display: none;
+    display: none !important;
+    content: none !important;
 }
 
-/* Mobile nav link hover states */
-.mobile-nav .nav-link:hover,
-.mobile-nav .nav-link:focus,
+/* SIMPLIFIED: Active state - highest specificity */
 .mobile-nav .nav-link.active {
-    color: #000000;
+    color: #000000 !important;
+    font-weight: 700 !important; /* Force bold for active */
+}
+
+/* SIMPLIFIED: Hover state for non-active items */
+.mobile-nav .nav-link:hover {
+    color: #000000 !important;
     font-weight: 700;
 }
 
-/* Adjust mobile nav padding for small mobile */
-@media (max-width: 480px) {
+/* Mobile nav height adjustment for 768px and below */
+@media (max-width: 768px) {
     .mobile-nav {
-        padding: 20px 12px; /* Match small mobile margin system */
+        top: 64px; /* Match the mobile nav height */
     }
-}
-
-.mobile-nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(4.2px, 4.2px);
-}
-
-.mobile-nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
-    opacity: 0;
-}
-
-.mobile-nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(4.2px, -4.2px);
 }
 
 /* Case Study Navigation */

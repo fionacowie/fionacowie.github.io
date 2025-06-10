@@ -219,8 +219,9 @@ function initSmoothScrolling() {
 }
 
 function scrollToElement(element) {
-    // UPDATED: Use correct nav height (88px) and optimize buffer for better alignment
-    const navHeight = document.querySelector('.main-nav')?.offsetHeight || 88;
+    // UPDATED: Use dynamic nav height calculation instead of hardcoded value
+    const navElement = document.querySelector('.main-nav');
+    const navHeight = navElement ? navElement.offsetHeight : 88;
     
     // Special handling for contact section (which is inside about section)
     let targetPosition;
@@ -259,7 +260,7 @@ function scrollToTop() {
     }
 }
 
-// UPDATED: Scroll spy functionality with improved section detection
+// DEBUG VERSION: Scroll spy functionality with console logging
 function initScrollSpy() {
     if (!document.querySelector('.main-nav')) return; // Only on home page
     
@@ -269,44 +270,79 @@ function initScrollSpy() {
     if (sections.length === 0 || navLinks.length === 0) return;
     
     function updateActiveNavOnScroll() {
-        const navHeight = document.querySelector('.main-nav')?.offsetHeight || 88;
+        // FIXED: Dynamically get the current nav height instead of hardcoding
+        const navElement = document.querySelector('.main-nav');
+        const navHeight = navElement ? navElement.offsetHeight : 88;
         const scrollPosition = window.scrollY + navHeight + 50;
+        
+        // DEBUG: Log current values
+        console.log('Nav height:', navHeight);
+        console.log('Current scroll Y:', window.scrollY);
+        console.log('Calculated scroll position:', scrollPosition);
         
         let currentSection = '';
         
-        // FIXED: Find the most recently passed section by iterating in reverse order
-        // This ensures only one section is ever active at a time
-        const sectionsArray = Array.from(sections).reverse();
+        // DEBUG: Log all section positions
+        sections.forEach(section => {
+            console.log(`Section ${section.id}:`, section.offsetTop);
+        });
         
-        for (const section of sectionsArray) {
-            const sectionTop = section.offsetTop;
+        // SPECIAL CASE: Check if we're in the contact section first
+        const contactSection = document.querySelector('#contact');
+        if (contactSection && scrollPosition >= contactSection.offsetTop) {
+            currentSection = 'contact';
+            console.log('Found current section (contact special case):', currentSection);
+        } else {
+            // FIXED: Find the most recently passed section by iterating in reverse order
+            const sectionsArray = Array.from(sections).reverse();
             
-            // If we've scrolled past this section's top, it's our current section
-            if (scrollPosition >= sectionTop) {
-                currentSection = section.getAttribute('id');
-                break; // Stop at the first (most recent) section we find
+            for (const section of sectionsArray) {
+                // Skip contact section since we handled it above
+                if (section.id === 'contact') continue;
+                
+                const sectionTop = section.offsetTop;
+                
+                // If we've scrolled past this section's top, it's our current section
+                if (scrollPosition >= sectionTop) {
+                    currentSection = section.getAttribute('id');
+                    console.log('Found current section:', currentSection);
+                    break; // Stop at the first (most recent) section we find
+                }
             }
         }
         
         // If we're at the very top, don't highlight anything
         if (window.scrollY < 50) {
             currentSection = '';
+            console.log('At top, clearing section');
         }
         
+        console.log('Final current section:', currentSection);
+        
         // Clear all active states first - this ensures only one is ever active
-        navLinks.forEach(link => {
+        // FIXED: Clear both desktop AND mobile nav links
+        const allNavLinks = document.querySelectorAll('.nav-link[data-section]');
+        allNavLinks.forEach(link => {
             link.classList.remove('active');
             link.removeAttribute('aria-current');
         });
         
         // Set active state for the single current section
         if (currentSection) {
-            const activeLink = document.querySelector(`.nav-link[data-section="${currentSection}"]`);
-            if (activeLink) {
+            // FIXED: Apply active class to BOTH desktop and mobile nav links
+            const activeLinks = document.querySelectorAll(`.nav-link[data-section="${currentSection}"]`);
+            activeLinks.forEach(activeLink => {
+                console.log('Setting active link for:', currentSection, activeLink);
                 activeLink.classList.add('active');
                 activeLink.setAttribute('aria-current', 'page');
+            });
+            
+            if (activeLinks.length === 0) {
+                console.log('Could not find any nav links for section:', currentSection);
             }
         }
+        
+        console.log('---');
     }
     
     // UPDATED: Reduced throttling for more responsive updates
@@ -315,7 +351,7 @@ function initScrollSpy() {
         if (scrollTimeout) {
             clearTimeout(scrollTimeout);
         }
-        scrollTimeout = setTimeout(updateActiveNavOnScroll, 5); // Reduced from 10ms to 5ms
+        scrollTimeout = setTimeout(updateActiveNavOnScroll, 5);
     });
     
     // Initial call
