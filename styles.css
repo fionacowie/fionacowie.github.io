@@ -131,6 +131,14 @@ main {
     transition: all 0.3s ease;
 }
 
+/* SAFEGUARD: Ensure main is always visible after page load completes */
+/* This prevents blank screens from stuck transition states */
+body.loaded main {
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
 /* Skip link for accessibility */
 .skip-link {
     position: absolute;

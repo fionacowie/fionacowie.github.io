@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
     initKeyboardNavigation();
     initPageTransitions(); // Add page transitions
     handlePageEntrance(); // Handle page entrance animations
+    
+    // SAFEGUARD: Add loaded class after a short delay to ensure visibility
+    setTimeout(() => {
+        document.body.classList.add('loaded');
+    }, 500);
 });
 
 // Page Transitions functionality
@@ -68,19 +73,26 @@ function playExitAnimation(animationClass, targetUrl) {
 function handlePageEntrance() {
     // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return; // Skip transitions if user prefers reduced motion
+    if (prefersReducedMotion) {
+        // Clear any CSS properties that might hide content
+        document.documentElement.style.removeProperty('--initial-transform');
+        document.documentElement.style.removeProperty('--initial-opacity');
+        document.documentElement.style.removeProperty('--initial-visibility');
+        return;
+    }
 
     const transitionDirection = sessionStorage.getItem('transitionDirection');
     const main = document.querySelector('main');
     
+    // CRITICAL FIX: Always clear CSS properties to ensure page is visible
+    // This prevents blank screen when using browser navigation
+    document.documentElement.style.removeProperty('--initial-transform');
+    document.documentElement.style.removeProperty('--initial-opacity');
+    document.documentElement.style.removeProperty('--initial-visibility');
+    
     if (transitionDirection) {
         // Remove the direction from storage
         sessionStorage.removeItem('transitionDirection');
-        
-        // Clear the CSS custom properties and make page visible
-        document.documentElement.style.removeProperty('--initial-transform');
-        document.documentElement.style.removeProperty('--initial-opacity');
-        document.documentElement.style.removeProperty('--initial-visibility');
         
         // Add page transitioning class
         main.classList.add('page-transitioning');
@@ -103,6 +115,10 @@ function handlePageEntrance() {
                 main.classList.remove('page-transitioning', 'slide-in-from-left');
             }, 300);
         }
+    } else {
+        // No transition direction set (browser navigation) - ensure page is visible
+        // Remove any transition classes that might have been left
+        main.classList.remove('page-transitioning', 'slide-in-from-right', 'slide-in-from-left');
     }
 }
 
