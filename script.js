@@ -277,7 +277,7 @@ function scrollToTop() {
     }
 }
 
-// DEBUG VERSION: Scroll spy functionality with console logging
+// Scroll spy functionality
 function initScrollSpy() {
     if (!document.querySelector('.main-nav')) return; // Only on home page
     
@@ -292,17 +292,7 @@ function initScrollSpy() {
         const navHeight = navElement ? navElement.offsetHeight : 88;
         const scrollPosition = window.scrollY + navHeight + 50;
         
-        // DEBUG: Log current values
-        console.log('Nav height:', navHeight);
-        console.log('Current scroll Y:', window.scrollY);
-        console.log('Calculated scroll position:', scrollPosition);
-        
         let currentSection = '';
-        
-        // DEBUG: Log all section positions
-        sections.forEach(section => {
-            console.log(`Section ${section.id}:`, section.offsetTop);
-        });
         
         // Check if we're on mobile (where we want contact to be separate)
         const isMobile = window.innerWidth <= 768;
@@ -314,7 +304,6 @@ function initScrollSpy() {
             const contactThreshold = contactSection.offsetTop - (window.innerHeight * 0.3); // 30% of viewport height before contact section
             if (scrollPosition >= contactThreshold) {
                 currentSection = 'contact';
-                console.log('Found current section (contact special case):', currentSection);
             }
         }
         
@@ -332,7 +321,6 @@ function initScrollSpy() {
                 // If we've scrolled past this section's top, it's our current section
                 if (scrollPosition >= sectionTop) {
                     currentSection = section.getAttribute('id');
-                    console.log('Found current section:', currentSection);
                     break; // Stop at the first (most recent) section we find
                 }
             }
@@ -341,10 +329,7 @@ function initScrollSpy() {
         // If we're at the very top, don't highlight anything
         if (window.scrollY < 50) {
             currentSection = '';
-            console.log('At top, clearing section');
         }
-        
-        console.log('Final current section:', currentSection);
         
         // Clear all active states first - this ensures only one is ever active
         // FIXED: Clear both desktop AND mobile nav links
@@ -361,17 +346,10 @@ function initScrollSpy() {
             // FIXED: Apply active class to BOTH desktop and mobile nav links
             const activeLinks = document.querySelectorAll(`.nav-link[data-section="${currentSection}"]`);
             activeLinks.forEach(activeLink => {
-                console.log('Setting active link for:', currentSection, activeLink);
                 activeLink.classList.add('active');
                 activeLink.setAttribute('aria-current', 'page');
             });
-            
-            if (activeLinks.length === 0) {
-                console.log('Could not find any nav links for section:', currentSection);
-            }
         }
-        
-        console.log('---');
     }
     
     // UPDATED: Reduced throttling for more responsive updates
