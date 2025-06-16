@@ -24,15 +24,25 @@
     
     <!-- Set initial page position for transitions BEFORE page renders -->
     <script>
-        (function() {
-            const transitionDirection = sessionStorage.getItem('transitionDirection');
+    (function() {
+        const transitionDirection = sessionStorage.getItem('transitionDirection');
+        const timestamp = sessionStorage.getItem('transitionTimestamp');
+        const currentTime = Date.now();
+        
+        // Only apply initial positioning if transition is recent (within 2 seconds)
+        if (transitionDirection && timestamp && (currentTime - parseInt(timestamp) < 2000)) {
             if (transitionDirection === 'to-case-study') {
                 document.documentElement.style.setProperty('--initial-transform', 'translateX(100%)');
                 document.documentElement.style.setProperty('--initial-opacity', '0');
                 document.documentElement.style.setProperty('--initial-visibility', 'hidden');
+            } else if (transitionDirection === 'to-home') {
+                document.documentElement.style.setProperty('--initial-transform', 'translateX(-100%)');
+                document.documentElement.style.setProperty('--initial-opacity', '0');
+                document.documentElement.style.setProperty('--initial-visibility', 'hidden');
             }
-        })();
-    </script>
+        }
+    })();
+</script>
 </head>
 <body class="case-study-page">
     <!-- Skip to main content link for keyboard users -->

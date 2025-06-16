@@ -8,76 +8,35 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScrolling();
     initScrollSpy();
     initKeyboardNavigation();
-    initPageTransitions(); // Add page transitions
-    handlePageEntrance(); // Handle page entrance animations
+    initPageTransitions();
+    handlePageEntrance();
 });
 
-// Page Transitions functionality - COMPREHENSIVE SAFARI FIX
+// Page Transitions functionality - ENHANCED WITH BETTER STATE MANAGEMENT
 function initPageTransitions() {
     // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return; // Skip transitions if user prefers reduced motion
+    if (prefersReducedMotion) return;
 
     // Track if we're currently in a transition to avoid conflicts
     let isTransitioning = false;
     
-    // SAFARI FIX: Track navigation method to distinguish between custom transitions and browser navigation
-    let isCustomNavigation = false;
-
-    // Intercept case study links on home page
-    const caseStudyLinks = document.querySelectorAll('a[href*="case-study"]');
-    caseStudyLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            // Only intercept if it's a normal click (not browser navigation)
-            if (e.isTrusted && !isTransitioning) {
-                e.preventDefault();
-                isTransitioning = true;
-                isCustomNavigation = true;
-                const targetUrl = this.href;
-                
-                // Set transition direction for next page
-                sessionStorage.setItem('transitionDirection', 'to-case-study');
-                sessionStorage.setItem('customNavigation', 'true');
-                
-                // Play exit animation then navigate
-                playExitAnimation('slide-out-to-left', targetUrl);
-            }
-        });
-    });
-
-    // Intercept back-to-home links on case study pages - BUT ONLY FOR DIRECT CLICKS
-    const backHomeLinks = document.querySelectorAll('a[href*="index.html"], .back-home');
-    backHomeLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            // CRITICAL FIX: Only intercept trusted user clicks, not programmatic navigation
-            // This allows Safari's back button to work normally
-            if (e.isTrusted && !isTransitioning && !e.defaultPrevented) {
-                e.preventDefault();
-                isTransitioning = true;
-                isCustomNavigation = true;
-                const targetUrl = this.href || 'index.html';
-                
-                // Set transition direction for next page
-                sessionStorage.setItem('transitionDirection', 'to-home');
-                sessionStorage.setItem('customNavigation', 'true');
-                
-                // Play exit animation then navigate
-                playExitAnimation('slide-out-to-right', targetUrl);
-            }
-        });
-    });
-
-    // SAFARI FIX: Handle browser back/forward navigation (popstate)
-    window.addEventListener('popstate', function(e) {
-        console.log('Popstate event triggered - browser navigation detected');
-        
-        // Clear any transition flags when browser navigates naturally
+    // ENHANCED: Add transition queue to prevent overlapping transitions
+    let transitionQueue = [];
+    let isProcessingQueue = false;
+    
+    // ENHANCED: Clear any stale session storage on page load
+    const currentTime = Date.now();
+    const transitionTimestamp = sessionStorage.getItem('transitionTimestamp');
+    if (transitionTimestamp && currentTime - parseInt(transitionTimestamp) > 2000) {
+        // Clear stale transition data older than 2 seconds
         sessionStorage.removeItem('transitionDirection');
         sessionStorage.removeItem('customNavigation');
-        isTransitioning = false;
-        isCustomNavigation = false;
-        
-        // SAFARI FIX: Force page to be visible immediately on browser navigation
+        sessionStorage.removeItem('transitionTimestamp');
+    }
+    
+    // ENHANCED: Ensure page is visible on load (failsafe)
+    const ensurePageVisible = () => {
         const main = document.querySelector('main');
         if (main) {
             main.style.transform = 'translateX(0)';
@@ -85,64 +44,135 @@ function initPageTransitions() {
             main.style.visibility = 'visible';
             main.classList.remove('page-transitioning', 'slide-in-from-right', 'slide-in-from-left', 'slide-out-to-left', 'slide-out-to-right');
         }
-        
-        // Clear any CSS custom properties that might be hiding content
         document.documentElement.style.removeProperty('--initial-transform');
         document.documentElement.style.removeProperty('--initial-opacity');
         document.documentElement.style.removeProperty('--initial-visibility');
+    };
+    
+    // Process transition queue
+    const processTransitionQueue = () => {
+        if (isProcessingQueue || transitionQueue.length === 0) return;
         
-        // Let browser handle navigation naturally - no interference
+        isProcessingQueue = true;
+        const nextTransition = transitionQueue.shift();
+        
+        if (nextTransition) {
+            nextTransition();
+        }
+        
+        // Allow next transition after current one completes
+        setTimeout(() => {
+            isProcessingQueue = false;
+            processTransitionQueue();
+        }, 300); // Match your transition duration
+    };
+    
+    // Enhanced transition handler with queue
+    const handleTransition = (e, link, direction, targetUrl) => {
+        e.preventDefault();
+        
+        // Add to queue instead of executing immediately
+        transitionQueue.push(() => {
+            isTransitioning = true;
+            
+            // Set transition direction for next page with timestamp
+            sessionStorage.setItem('transitionDirection', direction);
+            sessionStorage.setItem('customNavigation', 'true');
+            sessionStorage.setItem('transitionTimestamp', Date.now().toString());
+            
+            // Play exit animation then navigate
+            playExitAnimation(
+                direction === 'to-case-study' ? 'slide-out-to-left' : 'slide-out-to-right',
+                targetUrl
+            );
+        });
+        
+        processTransitionQueue();
+    };
+
+    // Intercept case study links on home page
+    const caseStudyLinks = document.querySelectorAll('a[href*="case-study"]');
+    caseStudyLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (e.isTrusted && !isTransitioning) {
+                handleTransition(e, this, 'to-case-study', this.href);
+            }
+        });
     });
 
-    // SAFARI FIX: Handle page show event (important for Safari's back/forward cache)
-    window.addEventListener('pageshow', function(e) {
-        console.log('Pageshow event triggered, persisted:', e.persisted);
+    // Intercept back-to-home links on case study pages
+    const backHomeLinks = document.querySelectorAll('a[href*="index.html"], .back-home');
+    backHomeLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (e.isTrusted && !isTransitioning && !e.defaultPrevented) {
+                const targetUrl = this.href || 'index.html';
+                handleTransition(e, this, 'to-home', targetUrl);
+            }
+        });
+    });
+
+    // ENHANCED: Handle browser back/forward navigation
+    window.addEventListener('popstate', function(e) {
+        // Cancel any pending transitions
+        transitionQueue = [];
+        isProcessingQueue = false;
+        isTransitioning = false;
         
-        // If page is loaded from cache (Safari's back/forward cache)
+        // Clear transition state
+        sessionStorage.removeItem('transitionDirection');
+        sessionStorage.removeItem('customNavigation');
+        sessionStorage.removeItem('transitionTimestamp');
+        
+        // Force immediate visibility
+        ensurePageVisible();
+    });
+
+    // ENHANCED: Handle page show event
+    window.addEventListener('pageshow', function(e) {
         if (e.persisted) {
-            // Clear all transition states
+            // Page loaded from cache
+            transitionQueue = [];
+            isProcessingQueue = false;
+            isTransitioning = false;
+            
             sessionStorage.removeItem('transitionDirection');
             sessionStorage.removeItem('customNavigation');
-            isTransitioning = false;
-            isCustomNavigation = false;
+            sessionStorage.removeItem('transitionTimestamp');
             
-            // Force page to be visible
-            const main = document.querySelector('main');
-            if (main) {
-                main.style.transform = 'translateX(0)';
-                main.style.opacity = '1';
-                main.style.visibility = 'visible';
-                main.classList.remove('page-transitioning', 'slide-in-from-right', 'slide-in-from-left', 'slide-out-to-left', 'slide-out-to-right');
-            }
-            
-            // Clear CSS custom properties
-            document.documentElement.style.removeProperty('--initial-transform');
-            document.documentElement.style.removeProperty('--initial-opacity');
-            document.documentElement.style.removeProperty('--initial-visibility');
+            ensurePageVisible();
         }
     });
 
-    // Reset transition flag when page loads
+    // ENHANCED: Additional failsafe on visibility change
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+            // Check if we're stuck in a transition state
+            const transitionTimestamp = sessionStorage.getItem('transitionTimestamp');
+            if (transitionTimestamp) {
+                const elapsed = Date.now() - parseInt(transitionTimestamp);
+                if (elapsed > 1000) {
+                    // Transition should have completed by now
+                    ensurePageVisible();
+                    sessionStorage.removeItem('transitionDirection');
+                    sessionStorage.removeItem('customNavigation');
+                    sessionStorage.removeItem('transitionTimestamp');
+                }
+            }
+        }
+    });
+
+    // Reset on page load
     window.addEventListener('load', function() {
         isTransitioning = false;
+        transitionQueue = [];
+        isProcessingQueue = false;
         
-        // SAFARI FIX: Extra safety check - if this is not a custom navigation, ensure page is visible
         const isCustomNav = sessionStorage.getItem('customNavigation') === 'true';
         if (!isCustomNav) {
-            const main = document.querySelector('main');
-            if (main) {
-                main.style.transform = 'translateX(0)';
-                main.style.opacity = '1';
-                main.style.visibility = 'visible';
-            }
-            
-            document.documentElement.style.removeProperty('--initial-transform');
-            document.documentElement.style.removeProperty('--initial-opacity');
-            document.documentElement.style.removeProperty('--initial-visibility');
-            
-            // Clean up any stray session storage
+            ensurePageVisible();
             sessionStorage.removeItem('transitionDirection');
             sessionStorage.removeItem('customNavigation');
+            sessionStorage.removeItem('transitionTimestamp');
         }
     });
 }
@@ -154,8 +184,8 @@ function playExitAnimation(animationClass, targetUrl) {
     main.classList.add('page-transitioning');
     main.classList.add(animationClass);
     
-    // Get animation duration - MUCH FASTER NOW
-    const duration = animationClass.includes('slide-out-to-left') ? 250 : 250; // Both directions now 250ms for snappy feel
+    // Get animation duration
+    const duration = 250; // Your transition duration
     
     // Navigate after animation completes
     setTimeout(() => {
@@ -166,21 +196,27 @@ function playExitAnimation(animationClass, targetUrl) {
 function handlePageEntrance() {
     // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return; // Skip transitions if user prefers reduced motion
+    if (prefersReducedMotion) return;
 
     const transitionDirection = sessionStorage.getItem('transitionDirection');
     const isCustomNav = sessionStorage.getItem('customNavigation') === 'true';
+    const transitionTimestamp = sessionStorage.getItem('transitionTimestamp');
     const main = document.querySelector('main');
     
-    console.log('HandlePageEntrance - transitionDirection:', transitionDirection, 'isCustomNav:', isCustomNav);
+    // ENHANCED: Check if transition data is stale
+    let isStale = false;
+    if (transitionTimestamp) {
+        const elapsed = Date.now() - parseInt(transitionTimestamp);
+        isStale = elapsed > 2000; // Consider stale after 2 seconds
+    }
     
-    // SAFARI FIX: Only apply entrance animations if this was a custom navigation
-    if (transitionDirection && isCustomNav) {
-        // Remove the direction from storage
+    if (transitionDirection && isCustomNav && !isStale) {
+        // Valid transition data - proceed with animation
         sessionStorage.removeItem('transitionDirection');
         sessionStorage.removeItem('customNavigation');
+        sessionStorage.removeItem('transitionTimestamp');
         
-        // Clear the CSS custom properties and make page visible
+        // Clear the CSS custom properties
         document.documentElement.style.removeProperty('--initial-transform');
         document.documentElement.style.removeProperty('--initial-opacity');
         document.documentElement.style.removeProperty('--initial-visibility');
@@ -189,26 +225,29 @@ function handlePageEntrance() {
         main.classList.add('page-transitioning');
         
         if (transitionDirection === 'to-case-study') {
-            // Coming from home to case study - slide in from right (300ms)
             main.classList.add('slide-in-from-right');
             
-            // Remove animation class after completion
             setTimeout(() => {
                 main.classList.remove('page-transitioning', 'slide-in-from-right');
+                // Final visibility check
+                main.style.transform = '';
+                main.style.opacity = '';
+                main.style.visibility = '';
             }, 300);
             
         } else if (transitionDirection === 'to-home') {
-            // Coming from case study to home - slide in from left (300ms)
             main.classList.add('slide-in-from-left');
             
-            // Remove animation class after completion
             setTimeout(() => {
                 main.classList.remove('page-transitioning', 'slide-in-from-left');
+                // Final visibility check
+                main.style.transform = '';
+                main.style.opacity = '';
+                main.style.visibility = '';
             }, 300);
         }
     } else {
-        // SAFARI FIX: If this is not a custom navigation (e.g., browser back button), 
-        // ensure page is immediately visible without any transitions
+        // No valid transition or stale data - ensure immediate visibility
         document.documentElement.style.removeProperty('--initial-transform');
         document.documentElement.style.removeProperty('--initial-opacity');
         document.documentElement.style.removeProperty('--initial-visibility');
@@ -223,6 +262,7 @@ function handlePageEntrance() {
         // Clean up session storage
         sessionStorage.removeItem('transitionDirection');
         sessionStorage.removeItem('customNavigation');
+        sessionStorage.removeItem('transitionTimestamp');
     }
 }
 
