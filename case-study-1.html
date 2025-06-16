@@ -22,24 +22,39 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
     
-    <!-- Set initial page position for transitions BEFORE page renders -->
-    <script>
+  <!-- Set initial page position for transitions BEFORE page renders -->
+<script>
     (function() {
-        const transitionDirection = sessionStorage.getItem('transitionDirection');
-        const timestamp = sessionStorage.getItem('transitionTimestamp');
-        const currentTime = Date.now();
-        
-        // Only apply initial positioning if transition is recent (within 2 seconds)
-        if (transitionDirection && timestamp && (currentTime - parseInt(timestamp) < 2000)) {
-            if (transitionDirection === 'to-case-study') {
-                document.documentElement.style.setProperty('--initial-transform', 'translateX(100%)');
-                document.documentElement.style.setProperty('--initial-opacity', '0');
-                document.documentElement.style.setProperty('--initial-visibility', 'hidden');
-            } else if (transitionDirection === 'to-home') {
-                document.documentElement.style.setProperty('--initial-transform', 'translateX(-100%)');
-                document.documentElement.style.setProperty('--initial-opacity', '0');
-                document.documentElement.style.setProperty('--initial-visibility', 'hidden');
+        // More defensive initial state setting
+        try {
+            const transitionDirection = sessionStorage.getItem('transitionDirection');
+            const timestamp = sessionStorage.getItem('transitionTimestamp');
+            const currentTime = Date.now();
+            
+            // Only hide if we have fresh transition data
+            if (transitionDirection && timestamp && 
+                (currentTime - parseInt(timestamp) < 1000)) { // Reduced to 1 second
+                
+                if (transitionDirection === 'to-case-study') {
+                    document.documentElement.style.setProperty('--initial-transform', 'translateX(100%)');
+                    document.documentElement.style.setProperty('--initial-opacity', '0');
+                    document.documentElement.style.setProperty('--initial-visibility', 'hidden');
+                } else if (transitionDirection === 'to-home') {
+                    document.documentElement.style.setProperty('--initial-transform', 'translateX(-100%)');
+                    document.documentElement.style.setProperty('--initial-opacity', '0');
+                    document.documentElement.style.setProperty('--initial-visibility', 'hidden');
+                }
+                
+                // Auto-cleanup after setting
+                setTimeout(() => {
+                    document.documentElement.style.removeProperty('--initial-transform');
+                    document.documentElement.style.removeProperty('--initial-opacity');
+                    document.documentElement.style.removeProperty('--initial-visibility');
+                }, 1500);
             }
+        } catch (e) {
+            // If anything fails, ensure page is visible
+            console.error('Transition setup error:', e);
         }
     })();
 </script>

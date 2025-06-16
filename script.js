@@ -1,6 +1,27 @@
 // Portfolio Website JavaScript
 // Handles navigation, smooth scrolling, mobile menu functionality, and page transitions
 
+// Immediate visibility check on script load
+(function() {
+    const main = document.querySelector('main');
+    if (main && window.location.pathname.includes('.html')) {
+        // Force visibility if we detect any transform issues
+        const computedStyle = window.getComputedStyle(main);
+        if (computedStyle.opacity === '0' || 
+            computedStyle.visibility === 'hidden' ||
+            computedStyle.transform.includes('translate')) {
+            main.style.transition = 'none';
+            main.style.transform = 'translateX(0)';
+            main.style.opacity = '1';
+            main.style.visibility = 'visible';
+            // Re-enable transitions after a brief delay
+            setTimeout(() => {
+                main.style.transition = '';
+            }, 100);
+        }
+    }
+})();
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
     initNavigation();
@@ -161,6 +182,66 @@ function initPageTransitions() {
         }
     });
 
+    // Enhanced beforeunload handler
+    window.addEventListener('beforeunload', function() {
+        // Clear all transition states when leaving page
+        sessionStorage.removeItem('transitionDirection');
+        sessionStorage.removeItem('customNavigation');
+        sessionStorage.removeItem('transitionTimestamp');
+        
+        // Cancel any pending animations
+        const main = document.querySelector('main');
+        if (main) {
+            main.style.transition = 'none';
+            const animations = main.getAnimations();
+            animations.forEach(animation => animation.cancel());
+        }
+    });
+
+    // Mutation observer as last resort
+    const observer = new MutationObserver(function(mutations) {
+        const main = document.querySelector('main');
+        if (!main) return;
+        
+        // Check if main is stuck in invisible state
+        const computedStyle = window.getComputedStyle(main);
+        const isInvisible = computedStyle.opacity === '0' || 
+                           computedStyle.visibility === 'hidden';
+        const hasTransform = computedStyle.transform !== 'none' && 
+                            computedStyle.transform !== 'matrix(1, 0, 0, 1, 0, 0)';
+        
+        // If stuck and not actively transitioning
+        if ((isInvisible || hasTransform) && !main.classList.contains('page-transitioning')) {
+            const transitionTimestamp = sessionStorage.getItem('transitionTimestamp');
+            const now = Date.now();
+            
+            // If no active transition or transition is stale
+            if (!transitionTimestamp || (now - parseInt(transitionTimestamp) > 1000)) {
+                console.warn('Detected stuck transition state, forcing visibility');
+                main.style.transition = 'none';
+                main.style.transform = 'translateX(0)';
+                main.style.opacity = '1';
+                main.style.visibility = 'visible';
+                main.classList.remove('slide-in-from-right', 'slide-in-from-left', 
+                                     'slide-out-to-left', 'slide-out-to-right');
+                
+                // Re-enable transitions
+                setTimeout(() => {
+                    main.style.transition = '';
+                }, 100);
+            }
+        }
+    });
+
+    // Start observing after DOM is loaded
+    const main = document.querySelector('main');
+    if (main) {
+        observer.observe(main, {
+            attributes: true,
+            attributeFilter: ['class', 'style']
+        });
+    }
+
     // Reset on page load
     window.addEventListener('load', function() {
         isTransitioning = false;
@@ -264,6 +345,24 @@ function handlePageEntrance() {
         sessionStorage.removeItem('customNavigation');
         sessionStorage.removeItem('transitionTimestamp');
     }
+    
+    // Additional failsafe check after entrance should complete
+    setTimeout(() => {
+        const main = document.querySelector('main');
+        if (main) {
+            const computedStyle = window.getComputedStyle(main);
+            if (computedStyle.opacity === '0' || computedStyle.visibility === 'hidden') {
+                console.warn('Page still invisible after entrance, forcing visibility');
+                main.style.transition = 'none';
+                main.style.transform = 'translateX(0)';
+                main.style.opacity = '1';
+                main.style.visibility = 'visible';
+                setTimeout(() => {
+                    main.style.transition = '';
+                }, 50);
+            }
+        }
+    }, 500); // Check half a second after page should have loaded
 }
 
 // Navigation functionality
