@@ -509,6 +509,7 @@ body:has(.case-study-hero [src*="cs2-cover"]) .pull-quote:hover {
     width: 32px;
     height: 32px;
     margin-left: auto; /* Push to right on mobile */
+     position: relative;
 }
 
 .hamburger-line {
@@ -516,6 +517,37 @@ body:has(.case-study-hero [src*="cs2-cover"]) .pull-quote:hover {
     height: 2px;
     background-color: #000000;
     transition: all 0.3s ease;
+    position: absolute; /* Change to absolute positioning */
+    left: 0;
+}
+
+/* Position the three lines */
+.hamburger-line:nth-child(1) {
+    top: 8px;
+}
+
+.hamburger-line:nth-child(2) {
+    top: 15px;
+}
+
+.hamburger-line:nth-child(3) {
+    top: 22px;
+}
+
+/* Animate to X when menu is open */
+.mobile-nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
+    transform: rotate(45deg);
+    top: 15px;
+}
+
+.mobile-nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.mobile-nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 15px;
 }
 
 /* Mobile Navigation - SIMPLIFIED FIX */
